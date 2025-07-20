@@ -1,223 +1,265 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Maaf ya :(</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pesan Maaf</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Press Start 2P', cursive;
-      background: linear-gradient(to bottom, #d2a8f9, #fda9d7);
+      background: linear-gradient(to bottom, #cba6f7, #f9a2d1);
       color: white;
       overflow-x: hidden;
     }
 
-    #container {
-      max-width: 1000px;
-      margin: 100px auto 50px auto;
-      background-color: rgba(0, 0, 0, 0.3);
-      border: 5px solid white;
-      border-radius: 20px;
-      padding: 40px 30px;
-      text-align: center;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    h1 {
-      color: yellow;
-      margin-bottom: 40px;
-    }
-
-    p {
-      margin: 20px 0;
-      animation: fadeInUp 1s ease-in-out forwards;
-      opacity: 0;
-    }
-
-    p:nth-child(2) { animation-delay: 1s; }
-    p:nth-child(3) { animation-delay: 2s; }
-    p:nth-child(4) { animation-delay: 3s; }
-    p:nth-child(5) { animation-delay: 4s; }
-
-    .foto-orang {
+    #snow-canvas {
       position: fixed;
-      top: 10px;
-      right: 10px;
-      width: 80px;
-      height: 80px;
-      border: 4px solid white;
-      border-radius: 50%;
-      z-index: 10;
-      background-color: white;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
     }
 
-    .dino {
-      position: fixed;
-      bottom: 10px;
-      right: 30px;
-      width: 80px;
-      z-index: 1;
-    }
-
-    .trees {
+    .login-container {
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
+      height: 100vh;
+      text-align: center;
       gap: 20px;
-      margin-top: 30px;
-      margin-bottom: 30px;
+      padding: 20px;
+      z-index: 2;
+      position: relative;
     }
 
-    .trees img {
-      width: 60px;
+    .login-container input {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      font-family: 'Press Start 2P';
+      text-align: center;
     }
 
-    #peluk {
-      margin-top: 30px;
+    .login-container button {
+      padding: 10px 20px;
       background-color: hotpink;
       color: white;
-      padding: 10px 25px;
-      border-radius: 20px;
       border: none;
+      border-radius: 20px;
       cursor: pointer;
-      font-size: 12px;
-      box-shadow: 0 0 15px #ff88c2;
+      font-family: 'Press Start 2P';
     }
 
-    .emoji {
+    .notif {
+      margin-top: 15px;
+      color: yellow;
+    }
+
+    #main-content {
+      display: none;
+      padding: 50px 20px 0;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .message-box {
+      border: 4px solid white;
+      border-radius: 20px;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .message-box h2 {
+      color: yellow;
+      margin-bottom: 20px;
+    }
+
+    .message-box p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+
+    .message-box p:last-child {
+      font-style: italic;
+      text-decoration: underline;
+    }
+
+    #foto-orang {
       position: absolute;
-      animation: floatUp 2s ease-out forwards;
-      font-size: 30px;
+      top: -50px;
+      right: -50px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 4px solid white;
+    }
+
+    #dino {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      width: 80px;
+    }
+
+    #pohon-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 60px;
+      padding-bottom: 40px;
+    }
+
+    #pohon-container img {
+      width: 40px;
+    }
+
+    .hug-button {
+      margin-top: 20px;
+      background-color: hotpink;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: 'Press Start 2P';
+      box-shadow: 0 0 10px #ff91e1;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-30px); }
+      from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-150px); opacity: 0; }
-    }
-
-    .snowflake {
-      position: fixed;
-      top: -10px;
-      color: white;
-      font-size: 1em;
-      user-select: none;
-      animation: fall linear infinite;
-    }
-
-    @keyframes fall {
-      to { transform: translateY(100vh); }
-    }
-
-    #form-nama {
-      text-align: center;
-      margin-top: 100px;
-    }
-
-    #form-nama input {
-      padding: 10px;
-      font-size: 14px;
-      border-radius: 10px;
-      border: 2px solid #ccc;
-    }
-
-    #form-nama button {
-      padding: 10px 20px;
-      margin-left: 10px;
-      border-radius: 10px;
-      border: none;
-      background-color: purple;
-      color: white;
-      cursor: pointer;
-    }
-
-    #not-allowed {
-      text-align: center;
-      margin-top: 150px;
-      font-size: 16px;
-      color: white;
-    }
   </style>
 </head>
 <body>
 
-<img src="foto orang.png" alt="foto orang" class="foto-orang">
-<img src="dino.gif" class="dino" alt="dino">
-<audio id="bg-music" src="novo.mp3" autoplay muted></audio>
+<canvas id="snow-canvas"></canvas>
 
-<div id="form-nama">
-  <input type="text" id="nama" placeholder="Masukkan nama kamu..." />
-  <button onclick="cekNama()">Masuk</button>
+<div id="login" class="login-container">
+  <h2>Masukkan Nama Kamu</h2>
+  <input type="text" id="nameInput" placeholder="Ketik nama..."/>
+  <button onclick="checkName()">Masuk</button>
+  <div id="notif" class="notif"></div>
 </div>
 
-<div id="not-allowed" style="display: none;">
-  <p>Halo temen <span id="wrong-name"></span>, maaf ya kamu ga diperkenankan untuk baca 😔</p>
+<div id="main-content">
+  <div class="message-box">
+    <img src="foto orang.png" alt="foto orang" id="foto-orang">
+    <h2>MAAF YA :(</h2>
+    <p>Aku sadar kata-kata atau sikapku ngeganggu kamu 🥺</p>
+    <p>Tapi aku beneran gak bermaksud kayak gitu...</p>
+    <p>Aku kangen ngobrol sama kamu</p>
+    <p>Maafin aku ya...kalo kamu mau ngasih kesempatan aku buat benerin semuanya aku bakal...</p>
+    <p>___<em><strong>Tungguin ya pesan aku selanjutnya di sini, hehe~</strong></em>____</p>
+    <button class="hug-button">● u need hug?</button>
+  </div>
+  <img src="dino.png" alt="dino" id="dino">
+  <div id="pohon-container">
+    <img src="pohon.png" alt="pohon"/>
+    <img src="pohon.png" alt="pohon"/>
+    <img src="pohon.png" alt="pohon"/>
+    <img src="pohon.png" alt="pohon"/>
+    <img src="pohon.png" alt="pohon"/>
+  </div>
 </div>
 
-<div id="container" style="display:none;">
-  <h1>MAAF YA :(</h1>
-  <p>Aku sadar kata-kata atau sikapku ngeganggu kamu 🥺</p>
-  <p>Tapi aku beneran gak bermaksud kayak gitu...</p>
-  <p>Aku kangen ngobrol sama kamu</p>
-  <p>Maafin aku ya...kalo kamu mau ngasih kesempatan aku buat benerin semuanya aku bakal...</p>
-  <p><em>____Tungguin ya pesan aku selanjutnya di sini, hehe~____</em></p>
-  <button id="peluk">● u need hug?</button>
-</div>
-
-<div class="trees">
-  <img src="pohon.png"><img src="pohon.png"><img src="pohon.png"><img src="pohon.png"><img src="pohon.png">
-</div>
+<audio id="bg-music" src="novo.mp3" autoplay loop muted></audio>
 
 <script>
-  function cekNama() {
-    const nama = document.getElementById("nama").value.toLowerCase().trim();
-    const allowed = ['kisa', 'laven', 'melati'];
-    if (allowed.includes(nama)) {
-      document.getElementById("form-nama").style.display = "none";
-      document.getElementById("container").style.display = "block";
+  const allowedNames = ["kisa", "laven", "melati"];
 
-      // autoplay workaround
+  function checkName() {
+    const name = document.getElementById("nameInput").value.toLowerCase().trim();
+    const notif = document.getElementById("notif");
+    if (allowedNames.includes(name)) {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+
       const music = document.getElementById("bg-music");
       music.muted = false;
       music.play();
+
+      startSnow();
     } else {
-      document.getElementById("form-nama").style.display = "none";
-      document.getElementById("not-allowed").style.display = "block";
-      document.getElementById("wrong-name").innerText = nama;
+      notif.textContent = `Halo ${name}, maaf ya kamu tidak diperkenankan baca 😔`;
     }
   }
 
-  document.getElementById("peluk").addEventListener("click", () => {
-    const emoji = document.createElement("div");
-    emoji.classList.add("emoji");
-    emoji.innerText = "🤗";
-    emoji.style.left = Math.random() * window.innerWidth + "px";
-    emoji.style.top = window.innerHeight - 50 + "px";
-    document.body.appendChild(emoji);
-    setTimeout(() => emoji.remove(), 2000);
-  });
+  function startSnow() {
+    const canvas = document.getElementById("snow-canvas");
+    const ctx = canvas.getContext("2d");
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
 
-  // salju
-  function createSnowflake() {
-    const snow = document.createElement("div");
-    snow.classList.add("snowflake");
-    snow.innerText = "❄️";
-    snow.style.left = Math.random() * window.innerWidth + "px";
-    snow.style.fontSize = (Math.random() * 10 + 10) + "px";
-    snow.style.animationDuration = (Math.random() * 5 + 5) + "s";
-    document.body.appendChild(snow);
-    setTimeout(() => snow.remove(), 10000);
+    let numFlakes = 100;
+    let flakes = [];
+
+    for (let i = 0; i < numFlakes; i++) {
+      flakes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 4 + 1,
+        d: Math.random() + 1
+      });
+    }
+
+    function drawFlakes() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "white";
+      ctx.beginPath();
+      for (let i = 0; i < numFlakes; i++) {
+        let f = flakes[i];
+        ctx.moveTo(f.x, f.y);
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
+      }
+      ctx.fill();
+      moveFlakes();
+    }
+
+    let angle = 0;
+
+    function moveFlakes() {
+      angle += 0.01;
+      for (let i = 0; i < numFlakes; i++) {
+        let f = flakes[i];
+        f.y += Math.pow(f.d, 2) + 1;
+        f.x += Math.sin(angle) * 2;
+
+        if (f.y > height) {
+          flakes[i] = {x: Math.random() * width, y: 0, r: f.r, d: f.d};
+        }
+      }
+    }
+
+    function animateSnow() {
+      drawFlakes();
+      requestAnimationFrame(animateSnow);
+    }
+
+    animateSnow();
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
   }
-  setInterval(createSnowflake, 200);
 </script>
+
 </body>
 </html>
