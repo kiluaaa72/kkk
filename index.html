@@ -158,18 +158,14 @@
     }
 
     @keyframes pulseUp {
-      0% {
-        transform: translate(-50%, -50%) scale(0.5);
-        opacity: 0;
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(1.2);
-        opacity: 1;
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0;
-      }
+      0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+    }
+
+    textarea {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
     }
   </style>
 </head>
@@ -193,9 +189,21 @@
     <p>Aku kangen ngobrol sama kamu</p>
     <p>Maafin aku ya...kalo kamu mau ngasih kesempatan aku buat benerin semuanya aku bakal...</p>
     <p>___<em><strong>Tungguin ya pesan aku selanjutnya di sini, hehe~</strong></em>____</p>
+
     <button class="hug-button">● u need hug?</button>
+
+    <!-- FORM PESAN -->
+    <form action="https://formsubmit.co/namakamu@gmail.com" method="POST" style="margin-top: 30px;">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="box">
+      <textarea name="pesan" rows="4" placeholder="Tulis pesan kamu di sini..." required
+        style="width: 100%; padding: 10px; border-radius: 10px; margin-bottom: 10px;"></textarea>
+      <button type="submit" class="hug-button">Kirim Pesan ke Aku ❤️</button>
+    </form>
   </div>
+
   <img src="dino.gif" alt="dino" id="dino">
+
   <div id="pohon-container">
     <img src="pohon.png" alt="pohon"/>
     <img src="pohon.png" alt="pohon"/>
@@ -205,7 +213,7 @@
   </div>
 </div>
 
-<audio id="bg-music" src="novo.mp3" autoplay loop muted></audio>
+<audio id="bg-music" src="novo.mp3" autoplay loop></audio>
 
 <script>
   const allowedNames = ["kisa", "laven", "melati"];
@@ -216,11 +224,8 @@
     if (allowedNames.includes(name)) {
       document.getElementById("login").style.display = "none";
       document.getElementById("main-content").style.display = "block";
-
       const music = document.getElementById("bg-music");
-      music.muted = false;
       music.play();
-
       startSnow();
     } else {
       notif.textContent = `Halo ${name}, maaf ya kamu tidak diperkenankan baca 😔`;
@@ -232,25 +237,20 @@
     const ctx = canvas.getContext("2d");
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
+    let flakes = Array.from({ length: 100 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 4 + 1,
+      d: Math.random() + 1
+    }));
 
-    let numFlakes = 100;
-    let flakes = [];
-
-    for (let i = 0; i < numFlakes; i++) {
-      flakes.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 4 + 1,
-        d: Math.random() + 1
-      });
-    }
+    let angle = 0;
 
     function drawFlakes() {
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = "white";
       ctx.beginPath();
-      for (let i = 0; i < numFlakes; i++) {
-        let f = flakes[i];
+      for (let f of flakes) {
         ctx.moveTo(f.x, f.y);
         ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
       }
@@ -258,18 +258,12 @@
       moveFlakes();
     }
 
-    let angle = 0;
-
     function moveFlakes() {
       angle += 0.01;
-      for (let i = 0; i < numFlakes; i++) {
-        let f = flakes[i];
+      for (let f of flakes) {
         f.y += Math.pow(f.d, 2) + 1;
         f.x += Math.sin(angle) * 2;
-
-        if (f.y > height) {
-          flakes[i] = {x: Math.random() * width, y: 0, r: f.r, d: f.d};
-        }
+        if (f.y > height) f.y = 0;
       }
     }
 
@@ -291,10 +285,7 @@
     hug.textContent = '🤗';
     hug.className = 'hug-effect';
     document.body.appendChild(hug);
-
-    setTimeout(() => {
-      hug.remove();
-    }, 2000);
+    setTimeout(() => hug.remove(), 2000);
   });
 </script>
 
