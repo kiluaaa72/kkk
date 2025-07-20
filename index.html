@@ -14,8 +14,7 @@
 
     body {
       font-family: 'Press Start 2P', cursive;
-      background: url('https://i.ibb.co/t2xBmmC/purple-landscape.png') no-repeat center center fixed;
-      background-size: cover;
+      background-color: black; /* Ganti background jadi hitam */
       color: #fff;
       height: 100vh;
       overflow: hidden;
@@ -24,21 +23,6 @@
       align-items: center;
       justify-content: center;
       position: relative;
-    }
-
-    .clouds {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 200px;
-      background: url('https://i.ibb.co/vqK4BL7/pixel-clouds.png') repeat-x;
-      animation: cloudmove 60s linear infinite;
-    }
-
-    @keyframes cloudmove {
-      from { background-position: 0 0; }
-      to { background-position: -10000px 0; }
     }
 
     .container {
@@ -100,8 +84,6 @@
   </style>
 </head>
 <body>
-  <div class="clouds"></div>
-
   <div class="container">
     <h1>MAAF YA :(</h1>
     <p>Kalau aku ada salah atau nyebelin akhir-akhir ini<br>aku bener-bener minta maaf 🥺</p>
@@ -109,7 +91,8 @@
     <button class="btn" onclick="toggleHearts()">Lempar Cinta</button>
   </div>
 
-  <img class="dino" src="dino.gif" alt="dino" />
+  <!-- Ganti src="dino.gif" kalau kamu punya link gambar lain -->
+  <img class="dino" src="https://i.ibb.co/Svqxv0G/dino.gif" alt="dino" />
 
   <audio id="bgm" src="https://cdn.pixabay.com/download/audio/2023/03/13/audio_7a1fa37987.mp3?filename=8bit-loop-141671.mp3" loop></audio>
 
