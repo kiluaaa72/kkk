@@ -101,10 +101,10 @@
 
     #foto-orang {
       position: absolute;
-      top: -50px;
-      right: -50px;
-      width: 100px;
-      height: 100px;
+      top: -60px;
+      right: -60px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       border: 4px solid white;
     }
@@ -114,6 +114,7 @@
       bottom: 10px;
       right: 20px;
       width: 80px;
+      z-index: 1;
     }
 
     #pohon-container {
@@ -125,7 +126,7 @@
     }
 
     #pohon-container img {
-      width: 40px;
+      width: 60px;
     }
 
     .hug-button {
@@ -145,6 +146,31 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .hug-effect {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 100px;
+      animation: pulseUp 2s ease-out forwards;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    @keyframes pulseUp {
+      0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -259,6 +285,17 @@
       height = canvas.height = window.innerHeight;
     });
   }
+
+  document.querySelector('.hug-button').addEventListener('click', () => {
+    const hug = document.createElement('div');
+    hug.textContent = '🤗';
+    hug.className = 'hug-effect';
+    document.body.appendChild(hug);
+
+    setTimeout(() => {
+      hug.remove();
+    }, 2000);
+  });
 </script>
 
 </body>
