@@ -3,178 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Plis Maafin Aku 🙏💗</title>
+  <title>Maaf yaa 🕹️</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #fff5e6, #ffeaea);
-      text-align: center;
+      font-family: 'Press Start 2P', cursive;
+      background-color: #000;
+      color: #39ff14;
       overflow-x: hidden;
     }
 
     h1 {
-      font-size: 2.5em;
-      margin-top: 30px;
-    }
-
-    #typing-text {
-      font-size: 1.1em;
-      max-width: 800px;
-      margin: 20px auto;
-      white-space: pre-line;
-      padding: 0 20px;
-    }
-
-    img {
-      width: 200px;
-      margin: 30px auto;
-      display: block;
-    }
-
-    .buttons {
-      margin-top: 20px;
-    }
-
-    button {
-      font-size: 1em;
-      padding: 12px 20px;
-      margin: 10px;
-      border: none;
-      border-radius: 10px;
-      background-color: #ff6b81;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #ff4757;
-    }
-
-    .hearts {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
+      text-align: center;
+      margin-top: 100px;
+      font-size: 1.5rem;
+      animation: typing 3s steps(40), blink 0.5s step-end infinite alternate;
+      white-space: nowrap;
       overflow: hidden;
+      border-right: 3px solid #39ff14;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-image: url('https://emojicdn.elk.sh/💖');
-      background-size: contain;
-      background-repeat: no-repeat;
-      animation: float 8s infinite;
-      opacity: 0.8;
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
     }
 
-    @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(1);
-        opacity: 0;
-      }
-      30% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(0.5);
-        opacity: 0;
-      }
+    @keyframes blink {
+      50% { border-color: transparent }
     }
 
-    .music-toggle {
+    .dino {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 100px;
+      animation: floatDino 3s ease-in-out infinite;
+      image-rendering: pixelated;
+      z-index: 999;
+    }
+
+    @keyframes floatDino {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .toggle-music {
       position: fixed;
       top: 20px;
-      right: 20px;
-      z-index: 10;
-      background-color: #ffe0e9;
-      border: 1px solid #ffabc8;
-      border-radius: 50px;
-      padding: 10px 16px;
+      left: 20px;
+      background-color: #111;
+      border: 2px solid #39ff14;
+      color: #39ff14;
+      font-family: 'Press Start 2P', cursive;
+      padding: 10px;
+      font-size: 10px;
       cursor: pointer;
-      font-weight: bold;
-      color: #ff3366;
-      box-shadow: 0 0 10px rgba(255, 99, 132, 0.4);
-      transition: all 0.3s ease;
+      z-index: 999;
+      transition: background-color 0.3s ease;
     }
 
-    .music-toggle:hover {
-      background-color: #ffdde4;
+    .toggle-music:hover {
+      background-color: #222;
+    }
+
+    .content {
+      text-align: center;
+      font-size: 12px;
+      margin: 50px auto;
+      width: 90%;
+      max-width: 700px;
+      line-height: 1.8;
+    }
+
+    .content p {
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
 
-  <button class="music-toggle" onclick="toggleMusic()" id="musicBtn">🔊 Matikan Musik</button>
+  <button class="toggle-music" onclick="toggleAudio()">🔊 Matikan Lagu</button>
+  
+  <h1>Aku cuma pengen ngomongin ini dari kemarin...</h1>
 
-  <h1>Plis Maafin Aku 🙏 💕</h1>
-
-  <div id="typing-text"></div>
-
-  <img src="dino.gif" alt="Cute dino minta maaf"/>
-
-  <div class="buttons">
-    <button onclick="alert('Yay! Makasih banyak ya 💖')">Aku Maafin Kamu 💕</button>
-    <button onclick="alert('Huhuhu... Tapi makasih udah baca 😢')">Masih Marah 😤</button>
+  <div class="content">
+    <p>Maafin aku ya kalo kemarin kata-kataku bikin kamu kesel.</p>
+    <p>Padahal aku cuma pengen semua baik-baik aja, tapi malah bikin suasana jadi gak enak.</p>
+    <p>Kamu penting banget buat aku, makanya aku tulis semua ini. Semoga kamu ngerti 🥺</p>
   </div>
 
-  <audio autoplay loop id="bgmusic">
-    <source src="novo.m4a" type="audio/mp4">
-    Browser kamu tidak mendukung audio.
-  </audio>
+  <img src="dino.gif" class="dino" alt="dino lucu" />
 
-  <div class="hearts" id="hearts"></div>
+  <audio id="bg-music" src="novo.m4a" autoplay loop></audio>
 
   <script>
-    // Floating hearts
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
-      document.getElementById("hearts").appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
-    }
-    setInterval(createHeart, 500);
+    const audio = document.getElementById("bg-music");
+    const btn = document.querySelector(".toggle-music");
 
-    // Typewriter effect
-    const text = `Aku cuma pengen ngomongin ini dari kemarin, tapi bingung gimana caranya...
+    let isPlaying = true;
 
-Aku sadar kata-kata atau sikapku mungkin nyakitin kamu 😔  
-Tapi aku beneran gak bermaksud kayak gitu...
-
-Aku kangen kita ngobrol lagi, ketawa lagi, jadi kita yang kayak dulu 🥺  
-Maafin aku ya... plis kasih aku kesempatan buat benerin semuanya ❤️`;
-
-    let index = 0;
-    function typeWriter() {
-      if (index < text.length) {
-        document.getElementById("typing-text").innerHTML += text.charAt(index);
-        index++;
-        setTimeout(typeWriter, 45); // kecepatan ketik
-      }
-    }
-    window.onload = typeWriter;
-
-    // Toggle music
-    const bgMusic = document.getElementById("bgmusic");
-    const musicBtn = document.getElementById("musicBtn");
-
-    function toggleMusic() {
-      if (bgMusic.paused) {
-        bgMusic.play();
-        musicBtn.innerText = "🔊 Matikan Musik";
+    function toggleAudio() {
+      if (isPlaying) {
+        audio.pause();
+        btn.textContent = "🔇 Nyalakan Lagu";
       } else {
-        bgMusic.pause();
-        musicBtn.innerText = "🔈 Nyalakan Musik";
+        audio.play();
+        btn.textContent = "🔊 Matikan Lagu";
       }
+      isPlaying = !isPlaying;
     }
   </script>
+
 </body>
 </html>
