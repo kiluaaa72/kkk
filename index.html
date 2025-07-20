@@ -62,6 +62,13 @@
       background: #ff85c1;
     }
 
+    .music-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 99;
+    }
+
     .dino {
       position: absolute;
       bottom: 0;
@@ -84,29 +91,31 @@
   </style>
 </head>
 <body>
+  <!-- Tombol musik di kiri atas -->
+  <button class="btn music-toggle" onclick="toggleMusic()">🔊 Musik</button>
+
   <div class="container">
     <h1>MAAF YA :(</h1>
     <p>Kalau aku ada salah atau nyebelin akhir-akhir ini<br>aku bener-bener minta maaf 🥺</p>
-    <button class="btn" onclick="playMusic()">Putar Musik</button>
     <button class="btn" onclick="toggleHearts()">Lempar Cinta</button>
   </div>
 
-  <!-- Dino harus berada di folder yang sama dengan file ini -->
   <img class="dino" src="dino.gif" alt="dino" />
 
-  <audio id="bgm" src="https://cdn.pixabay.com/download/audio/2023/03/13/audio_7a1fa37987.mp3?filename=8bit-loop-141671.mp3" loop></audio>
+  <!-- Autoplay Musik -->
+  <audio id="bgm" src="novo.m4a" autoplay loop></audio>
 
   <script>
     const music = document.getElementById("bgm");
-    let isPlaying = false;
+    let isPlaying = true;
 
-    function playMusic() {
-      if (!isPlaying) {
-        music.play();
-        isPlaying = true;
-      } else {
+    function toggleMusic() {
+      if (isPlaying) {
         music.pause();
         isPlaying = false;
+      } else {
+        music.play();
+        isPlaying = true;
       }
     }
 
@@ -123,6 +132,16 @@
         }, 5000);
       }
     }
+
+    // Autoplay workaround (kadang butuh interaksi pengguna)
+    window.addEventListener('load', () => {
+      const playPromise = music.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log("Autoplay mungkin diblokir browser:", error);
+        });
+      }
+    });
   </script>
 </body>
 </html>
