@@ -4,46 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Plis Maafin Aku 🙏💗</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Fredoka', sans-serif;
       background: linear-gradient(to bottom, #fff5e6, #ffeaea);
-      text-align: center;
+      color: #333;
       overflow-x: hidden;
+      text-align: center;
     }
+
     h1 {
-      font-size: 2.5em;
-      margin-top: 30px;
+      font-size: 2.5rem;
+      margin: 30px auto 10px;
+      color: #e74c3c;
     }
+
     p {
-      font-size: 1.1em;
+      font-size: 1.2rem;
       max-width: 800px;
       margin: 20px auto;
+      line-height: 1.6;
     }
-    img {
-      width: 200px;
-      margin: 30px auto;
+
+    .dino {
+      width: 220px;
+      margin: 25px auto;
       display: block;
+      animation: bounce 2s infinite ease-in-out;
     }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
     .buttons {
       margin-top: 20px;
     }
+
     button {
-      font-size: 1em;
-      padding: 12px 20px;
-      margin: 10px;
+      background: #ff6b81;
       border: none;
-      border-radius: 10px;
-      background-color: #ff6b81;
       color: white;
+      padding: 14px 25px;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      margin: 10px;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: 0.3s;
     }
+
     button:hover {
-      background-color: #ff4757;
+      background: #ff4757;
     }
+
     .hearts {
       position: fixed;
       top: 0;
@@ -52,70 +69,80 @@
       height: 100%;
       pointer-events: none;
       overflow: hidden;
+      z-index: -1;
     }
+
     .heart {
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       background-image: url('https://emojicdn.elk.sh/💖');
       background-size: contain;
       background-repeat: no-repeat;
-      animation: float 8s infinite;
-      opacity: 0.8;
+      animation: float 8s infinite ease-in;
+      opacity: 0.7;
     }
+
     @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(1);
-        opacity: 0;
-      }
-      30% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(0.5);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) scale(1); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(0.5); opacity: 0; }
     }
-    .audio-player {
-      margin-top: 30px;
+
+    audio {
+      margin-top: 25px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Plis Maafin Aku 🙏 💕</h1>
+  <h1>Plis Maafin Aku 🙏💖</h1>
 
   <p>
     Aku sangat menyesal atas kata dan sikapku akhir-akhir ini. Aku sadar mungkin itu nyakitin kamu, tapi sungguh bukan itu maksudku.  
     Aku cuma ingin kita bisa ngobrol lagi seperti dulu, pelan-pelan... Aku bakal dengerin kamu, belajar, dan benerin semuanya.  
-    Maafin aku ya... semoga kamu masih mau kasih aku kesempatan ❤️
+    Maafin aku ya... semoga kamu masih mau kasih aku kesempatan 🥺❤️
   </p>
 
-  <img src="dino.gif" alt="Cute dino minta maaf"/>
+  <img src="dino.gif" alt="nailong lucu" class="dino"/>
 
   <div class="buttons">
-    <button onclick="alert('Yay! Makasih banyak ya 💖')">Aku Maafin Kamu 💕</button>
-    <button onclick="alert('Huhuhu... Tapi makasih udah baca 😢')">Masih Marah 😤</button>
+    <button onclick="alert('YAY MAKASIH 😭💕💕💕')">Aku Maafin Kamu 💕</button>
+    <button onclick="alert('Huhuhu... tapi makasih udah baca 😢')">Masih Marah 😤</button>
   </div>
 
-  <audio autoplay loop id="bgmusic">
-    <source src="novo.m4a" type="audio/mpeg">
+  <!-- Audio Anchor by Novo Amor -->
+  <audio id="bgmusic" autoplay loop controls>
+    <source src="novo.m4a" type="audio/mp4">
     Browser kamu tidak mendukung audio.
   </audio>
 
   <div class="hearts" id="hearts"></div>
 
   <script>
-    // floating hearts
+    // Floating hearts
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+      heart.style.animationDuration = 6 + Math.random() * 4 + "s";
       document.getElementById("hearts").appendChild(heart);
       setTimeout(() => heart.remove(), 10000);
     }
     setInterval(createHeart, 500);
+
+    // Try to auto play the music even if browser blocks it
+    window.addEventListener('load', () => {
+      const music = document.getElementById('bgmusic');
+      const tryPlay = () => {
+        music.play().catch(() => {
+          // if autoplay blocked, show controls
+          music.controls = true;
+        });
+      };
+      tryPlay();
+    });
   </script>
+
 </body>
 </html>
