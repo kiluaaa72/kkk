@@ -10,22 +10,50 @@
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #a18cd1, #fbc2eb); /* gradasi ungu */
+      background: linear-gradient(to bottom, #a18cd1, #fbc2eb); 
       font-family: 'Press Start 2P', cursive;
       color: white;
       text-align: center;
       overflow: hidden;
       height: 100vh;
+      position: relative;
+    }
+
+    .cloud {
+      position: absolute;
+      top: 40px;
+      width: 150px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .cloud:nth-child(1) {
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .cloud:nth-child(2) {
+      left: 40%;
+      animation-delay: 1.5s;
+    }
+
+    .cloud:nth-child(3) {
+      left: 70%;
+      animation-delay: 3s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
     }
 
     .container {
       position: relative;
       z-index: 2;
-      padding-top: 100px;
+      padding-top: 120px;
     }
 
     h1 {
-      font-size: 18px;
+      font-size: 16px;
       margin-bottom: 20px;
     }
 
@@ -47,27 +75,34 @@
       transform: scale(1.05);
     }
 
-    .cloud {
+    .bottom-land {
       position: absolute;
-      top: 50px;
-      left: 30%;
-      width: 150px;
-      animation: float 6s ease-in-out infinite;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('https://i.imgur.com/3dqD6dC.png') repeat-x;
+      background-size: contain;
+      z-index: 1;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(10px); }
-    }
   </style>
 </head>
 <body>
-  <img src="cloud-pixel.png" alt="awan" class="cloud">
+  <!-- Awan pixel -->
+  <img src="https://i.imgur.com/hDRpNKh.png" class="cloud" alt="awan" />
+  <img src="https://i.imgur.com/hDRpNKh.png" class="cloud" alt="awan" />
+  <img src="https://i.imgur.com/hDRpNKh.png" class="cloud" alt="awan" />
+
+  <!-- Teks utama -->
   <div class="container">
     <h1>AKU MINTA MAAF 🙇‍♂️</h1>
     <p>Maaf banget ya kalau aku udah nyakitin kamu :(</p>
     <a href="#" class="btn-pixel">Peluk Balik</a>
     <a href="#" class="btn-pixel">Maafin Aku</a>
   </div>
+
+  <!-- Pohon & landscape bawah -->
+  <div class="bottom-land"></div>
 </body>
 </html>
