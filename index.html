@@ -3,144 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Maafin Aku 😢</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
+  <title>Plis Maafin Aku 🙏💗</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #fff4e6, #ffe9ec);
-      font-family: 'Fredoka', sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #fff5e6, #ffeaea);
       text-align: center;
-      color: #333;
       overflow-x: hidden;
     }
-
     h1 {
-      font-size: 2.8rem;
-      margin-top: 40px;
-    }
-
-    #typewriter-container {
-      display: flex;
-      justify-content: center;
-      margin: 20px;
-    }
-
-    #typewriter {
-      font-size: 1.2rem;
-      border-right: 2px solid #333;
-      white-space: nowrap;
-      overflow: hidden;
-      animation: typing 6s steps(70, end), blink 0.75s step-end infinite;
-      max-width: 90vw;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-
-    .dino {
-      margin-top: 30px;
-      width: 250px;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    .dino:hover {
-      transform: scale(1.1) rotate(5deg);
-    }
-
-    .button-container {
+      font-size: 2.5em;
       margin-top: 30px;
     }
-
-    .button-container button {
-      background-color: #ff5e78;
-      border: none;
-      color: white;
-      padding: 12px 25px;
-      font-size: 1.1rem;
+    p {
+      font-size: 1.1em;
+      max-width: 800px;
+      margin: 20px auto;
+    }
+    img {
+      width: 200px;
+      margin: 30px auto;
+      display: block;
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    button {
+      font-size: 1em;
+      padding: 12px 20px;
       margin: 10px;
+      border: none;
       border-radius: 10px;
+      background-color: #ff6b81;
+      color: white;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: 0.3s ease;
     }
-
-    .button-container button:hover {
-      background-color: #e0445f;
+    button:hover {
+      background-color: #ff4757;
     }
-
-    .heart {
+    .hearts {
       position: fixed;
-      top: -10px;
-      font-size: 24px;
-      animation: float 5s linear infinite;
-      color: red;
-      user-select: none;
-      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
     }
-
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-image: url('https://emojicdn.elk.sh/💖');
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: float 8s infinite;
+      opacity: 0.8;
+    }
     @keyframes float {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(100vh); opacity: 0; }
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(0.5);
+        opacity: 0;
+      }
     }
-
-    audio {
-      margin-top: 20px;
-    }
-
-    .audio-control {
-      margin-top: 20px;
+    .audio-player {
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Plis Maafin Aku 🙏</h1>
+  <h1>Plis Maafin Aku 🙏 💕</h1>
 
-  <div id="typewriter-container">
-    <div id="typewriter">
-      ku sangat menyesal atas kata & sikapku belakangan ini.
-      Aku tahu itu mungkin nyakitin kamu, dan aku benar‑benar nggak bermaksud.
+  <p>
+    Aku sangat menyesal atas kata dan sikapku akhir-akhir ini. Aku sadar mungkin itu nyakitin kamu, tapi sungguh bukan itu maksudku.  
+    Aku cuma ingin kita bisa ngobrol lagi seperti dulu, pelan-pelan... Aku bakal dengerin kamu, belajar, dan benerin semuanya.  
+    Maafin aku ya... semoga kamu masih mau kasih aku kesempatan ❤️
+  </p>
 
-      Aku berharap kita bisa mulai ngobrol lagi, pelan‑pelan.
-      Aku siap dengerin, belajar, dan perbaiki semuanya.
+  <img src="dino.gif" alt="Cute dino minta maaf"/>
 
-      Maaf ya... Semoga kamu mau memberi kesempatan lagi 🦕
-    </div>
+  <div class="buttons">
+    <button onclick="alert('Yay! Makasih banyak ya 💖')">Aku Maafin Kamu 💕</button>
+    <button onclick="alert('Huhuhu... Tapi makasih udah baca 😢')">Masih Marah 😤</button>
   </div>
 
-  <img src="dino.gif" alt="nailong" class="dino" onclick="alert('Nailong juga minta maaf 🦕💔')"/>
+  <audio autoplay loop id="bgmusic">
+    <source src="novo.m4a" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+  </audio>
 
-  <div class="button-container">
-    <button onclick="alert('YAYY!! MAKASIH 😭😭😭')">Aku Maafin Kamu 💕</button>
-    <button onclick="alert('Plis... aku bakal buktiin berubah 😢')">Masih Marah 😤</button>
-  </div>
-
-  <div class="audio-control">
-    <audio id="bgm" controls autoplay loop>
-      <source src="https://dl.sndup.net/qp7p/anchor-novoamor.mp3" type="audio/mpeg">
-      Browsermu tidak mendukung audio :(
-    </audio>
-  </div>
+  <div class="hearts" id="hearts"></div>
 
   <script>
-    // Floating hearts
-    setInterval(() => {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.innerText = '❤️';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }, 500);
+    // floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+      document.getElementById("hearts").appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 500);
   </script>
-
 </body>
 </html>
