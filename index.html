@@ -13,7 +13,6 @@
     }
 
     body {
-      margin: 0;
       font-family: 'Press Start 2P', cursive;
       background: linear-gradient(to bottom, #c2a5e2, #f6c0e6);
       color: #fff;
@@ -25,7 +24,6 @@
       justify-content: center;
       position: relative;
     }
-
 
     .container {
       text-align: center;
@@ -100,6 +98,24 @@
       0% { transform: translateY(0) scale(1); opacity: 1; }
       100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
     }
+
+    /* Deretan pohon */
+    .pohon-wrapper {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding-bottom: 10px;
+      z-index: 1;
+    }
+
+    .pohon {
+      height: 60px;
+      width: auto;
+    }
   </style>
 </head>
 <body>
@@ -116,6 +132,15 @@
 
   <!-- Gambar Dino -->
   <img class="dino" src="dino.gif" alt="dino" />
+
+  <!-- Deretan Pohon -->
+  <div class="pohon-wrapper">
+    <img src="pohon.png" class="pohon" alt="pohon" />
+    <img src="pohon.png" class="pohon" alt="pohon" />
+    <img src="pohon.png" class="pohon" alt="pohon" />
+    <img src="pohon.png" class="pohon" alt="pohon" />
+    <img src="pohon.png" class="pohon" alt="pohon" />
+  </div>
 
   <!-- Musik -->
   <audio id="bgm" src="novo.mp3" autoplay loop></audio>
