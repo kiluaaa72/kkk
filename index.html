@@ -1,184 +1,170 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Maaf Ya</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maaf Ya 🥺</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Courier New', monospace;
       background: linear-gradient(to bottom, #c8a2ff, #fbb6ce);
       overflow-x: hidden;
+      font-family: 'Press Start 2P', cursive;
     }
 
-    #musicToggle {
+    .music-toggle {
       position: fixed;
       top: 20px;
       left: 20px;
       z-index: 999;
-      background-color: #ff5ca2;
-      color: white;
       padding: 10px 20px;
-      border-radius: 20px;
+      background: hotpink;
+      color: white;
       border: none;
-      font-weight: bold;
+      border-radius: 20px;
       box-shadow: 0 0 15px white;
       cursor: pointer;
     }
 
     .container {
-      margin: 100px auto;
-      padding: 40px;
-      background-color: rgba(0, 0, 0, 0.3);
+      max-width: 900px;
+      margin: 150px auto 0;
+      background: rgba(0, 0, 0, 0.3);
       border-radius: 20px;
-      max-width: 70%;
-      text-align: center;
-      color: white;
       border: 5px solid white;
+      padding: 40px;
+      text-align: center;
       position: relative;
     }
 
-    h1 {
+    .judul {
+      font-size: 28px;
+      font-weight: bold;
       color: yellow;
-      font-size: 40px;
     }
 
-    .pelukBtn {
-      background-color: #ff5ca2;
+    .teks {
+      font-size: 14px;
       color: white;
-      padding: 15px 25px;
-      border: none;
-      border-radius: 20px;
-      font-size: 18px;
-      box-shadow: 0 0 15px white;
-      cursor: pointer;
       margin-top: 20px;
     }
 
-    .pelukan {
-      position: absolute;
-      font-size: 50px;
-      animation: pelukAnim 1s ease-out forwards;
+    .peluk {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 12px;
+      background: hotpink;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 0 20px white;
+      cursor: pointer;
+    }
+
+    .emoji {
+      font-size: 40px;
+      animation: pelukAnim 1s ease;
+      margin-top: 10px;
     }
 
     @keyframes pelukAnim {
-      0% { opacity: 1; transform: translateY(0); }
-      100% { opacity: 0; transform: translateY(-80px); }
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
     }
 
     .foto-orang {
       position: absolute;
-      top: -60px;
-      right: -60px;
-      border: 5px solid white;
-      border-radius: 50%;
+      top: -50px;
+      right: -50px;
       width: 100px;
       height: 100px;
+      border-radius: 50%;
+      border: 5px solid white;
       object-fit: cover;
-      background-color: white;
+      background: white;
     }
 
     .dino {
       position: fixed;
-      bottom: 20px;
       right: 20px;
+      bottom: 10px;
       width: 80px;
+      z-index: 10;
     }
 
     .pohon-container {
+      position: relative;
+      width: 100%;
       display: flex;
       justify-content: center;
-      align-items: flex-end;
-      gap: 30px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-      margin-top: 60px;
+      gap: 40px;
+      margin-top: 50px;
+      padding-bottom: 30px;
     }
 
     .pohon-container img {
-      width: 60px;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        max-width: 90%;
-        padding: 20px;
-      }
-      .foto-orang {
-        top: -50px;
-        right: -50px;
-        width: 80px;
-        height: 80px;
-      }
-      #musicToggle {
-        font-size: 14px;
-        padding: 8px 15px;
-      }
+      height: 80px;
     }
   </style>
 </head>
 <body>
 
-  <button id="musicToggle">🔈 Hidupkan Musik</button>
-  <audio id="backgroundMusic" src="novo.mp3" autoplay loop></audio>
+  <button class="music-toggle" onclick="toggleMusic()">🔈 Hidupkan Musik</button>
+  <audio id="bgMusic" src="novo.mp3" autoplay loop></audio>
 
   <div class="container">
-    <img src="foto orang.png" alt="Foto Orang" class="foto-orang">
-    <h1>MAAF YA :(</h1>
-    <p>Kalau aku ada salah atau nyebelin akhir-akhir ini<br>aku bener-bener minta maaf 🥺</p>
-    <button class="pelukBtn" onclick="peluk()">Peluk Aku</button>
+    <img src="foto orang.png" class="foto-orang" alt="foto orang"/>
+    <div class="judul">MAAF YA :(</div>
+    <div class="teks">
+      Kalau aku ada salah atau nyebelin akhir-akhir ini<br/>
+      aku bener-bener minta maaf 🥺
+    </div>
+    <button class="peluk" onclick="showPeluk()">Peluk Aku</button>
+    <div id="emojiContainer"></div>
   </div>
+
+  <img src="dino.gif" class="dino" alt="dino" />
 
   <div class="pohon-container">
-    <img src="pohon.png" alt="Pohon">
-    <img src="pohon.png" alt="Pohon">
-    <img src="pohon.png" alt="Pohon">
-    <img src="pohon.png" alt="Pohon">
-    <img src="pohon.png" alt="Pohon">
-    <img src="pohon.png" alt="Pohon">
+    <img src="pohon.png" alt="pohon">
+    <img src="pohon.png" alt="pohon">
+    <img src="pohon.png" alt="pohon">
+    <img src="pohon.png" alt="pohon">
+    <img src="pohon.png" alt="pohon">
+    <img src="pohon.png" alt="pohon">
   </div>
 
-  <img src="dino.gif" class="dino" alt="Dino Imut">
-
   <script>
-    const music = document.getElementById('backgroundMusic');
-    const toggleBtn = document.getElementById('musicToggle');
-
+    const music = document.getElementById('bgMusic');
     let isPlaying = true;
-    toggleBtn.onclick = function() {
-      if (isPlaying) {
-        music.pause();
-        toggleBtn.textContent = "🔇 Matikan Musik";
-      } else {
+
+    function toggleMusic() {
+      if (music.paused) {
         music.play();
-        toggleBtn.textContent = "🔈 Hidupkan Musik";
+        isPlaying = true;
+      } else {
+        music.pause();
+        isPlaying = false;
       }
-      isPlaying = !isPlaying;
     }
 
-    function peluk() {
+    function showPeluk() {
+      const container = document.getElementById('emojiContainer');
       const emoji = document.createElement('div');
-      emoji.className = 'pelukan';
-      emoji.textContent = '🤗';
-      emoji.style.left = (Math.random() * 80 + 10) + '%';
-      emoji.style.top = '70%';
-      document.body.appendChild(emoji);
-
-      setTimeout(() => emoji.remove(), 1000);
+      emoji.className = 'emoji';
+      emoji.innerText = '🤗';
+      container.innerHTML = '';
+      container.appendChild(emoji);
     }
 
-    // autoplay workaround untuk browser restrictions
     window.addEventListener('load', () => {
-      const promise = music.play();
-      if (promise !== undefined) {
-        promise.catch(() => {
-          isPlaying = false;
-          toggleBtn.textContent = "🔇 Matikan Musik";
-        });
-      }
+      music.play().catch(() => {
+        console.log("Autoplay diblokir browser.");
+      });
     });
   </script>
-
 </body>
 </html>
