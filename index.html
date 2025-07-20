@@ -1,104 +1,103 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Maaf ya...</title>
+  <title>Maaf Ya :(</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: radial-gradient(#000000, #1a1a40);
-      color: white;
-      font-family: 'Comic Sans MS', sans-serif;
-      overflow-x: hidden;
+      background: linear-gradient(135deg, #fff3c7, #d6f8d6);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: 100vh;
-    }
-
-    .container {
-      text-align: center;
-      margin-top: 20vh;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 2em;
+      flex-direction: column;
+      overflow: hidden;
     }
 
     #nailong {
-      position: fixed;
+      width: 200px;
+      animation: bounce 2s infinite;
+      position: absolute;
       bottom: 10px;
       right: 10px;
-      width: 100px;
-      cursor: pointer;
-      animation: float 2s ease-in-out infinite;
     }
 
-    @keyframes float {
-      0%   { transform: translateY(0); }
-      50%  { transform: translateY(-15px); }
-      100% { transform: translateY(0); }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    #text {
+      font-size: 1.5rem;
+      color: #333;
+      max-width: 600px;
+      text-align: center;
+      padding: 1rem;
     }
 
     button {
-      background-color: #ffcf48;
-      color: #333;
-      padding: 10px 20px;
+      background-color: #ffcf56;
       border: none;
-      font-weight: bold;
+      padding: 10px 20px;
+      font-size: 1rem;
       border-radius: 10px;
       cursor: pointer;
       margin-top: 20px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      transition: 0.3s;
     }
+
+    button:hover {
+      background-color: #ffe18f;
+    }
+
   </style>
 </head>
 <body>
-  <!-- Musik autoplay -->
-  <audio id="bg-music" autoplay loop>
-    <source src="https://files.catbox.moe/2q1lze.mp3" type="audio/mp3" />
-    Browser kamu tidak mendukung audio.
-  </audio>
 
-  <!-- Kontainer teks minta maaf -->
-  <div class="container">
-    <h1 id="type-text"></h1>
-    <button onclick="toggleMusic()">⏯ Musik</button>
-  </div>
+  <div id="text"></div>
+  <button onclick="toggleMusic()">🎵 Play / Pause Music</button>
 
   <!-- Dino Nailong -->
-  <img src="https://media1.tenor.com/m/3OCU_3Pk-PgAAAAC/dino-dance.gif"
-       alt="Nailong Dino"
-       id="nailong"
-       onclick="playSorrySound()" />
+  <img id="nailong" src="https://media.tenor.com/R_vBDSHPsuIAAAAC/dinosaur-yellowdino.gif" alt="Nailong Dino" />
 
-  <!-- Script ketik otomatis + interaksi -->
+  <!-- Audio -->
+  <audio id="bg-music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-buddy.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
   <script>
-    const text = "Maaf yaa... Aku sadar aku salah 😔 Tapi aku beneran nyesel dan pengen baikan lagi sama kamu... 🦖💛";
-    let i = 0;
+    const text = `Aku tahu aku mungkin bikin kamu kecewa...
+Tapi dari hati paling dalam, aku minta maaf ya 🥺
 
-    function ketik() {
+Aku bener-bener sayang kamu, dan aku bakal usaha terus buat jadi lebih baik.
+
+Jangan marah lama-lama ya...
+Aku di sini nunggu kamu maafin, sambil ditemenin Nailong 🦖❤️`;
+
+    let i = 0;
+    function typeWriter() {
       if (i < text.length) {
-        document.getElementById("type-text").innerHTML += text.charAt(i);
+        document.getElementById("text").innerHTML += text.charAt(i);
         i++;
-        setTimeout(ketik, 60);
+        setTimeout(typeWriter, 50);
       }
     }
-
-    ketik();
+    typeWriter();
 
     function toggleMusic() {
-      const bgMusic = document.getElementById("bg-music");
-      if (bgMusic.paused) {
-        bgMusic.play();
+      const music = document.getElementById("bg-music");
+      if (music.paused) {
+        music.play();
       } else {
-        bgMusic.pause();
+        music.pause();
       }
     }
-
-    function playSorrySound() {
-      const audio = new Audio("https://files.catbox.moe/1yvmkx.mp3");
-      audio.play();
-    }
   </script>
+
 </body>
 </html>
