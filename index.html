@@ -1,131 +1,155 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Maaf yaa :(</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maaf dari Hatiku</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
+    
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #a18cd1, #fbc2eb); 
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
       font-family: 'Press Start 2P', cursive;
-      color: white;
-      text-align: center;
-      overflow: hidden;
-      height: 100vh;
-      position: relative;
-    }
-
-    .cloud {
-      position: absolute;
-      top: 40px;
-      width: 150px;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .cloud:nth-child(1) {
-      left: 10%;
-      animation-delay: 0s;
-    }
-
-    .cloud:nth-child(2) {
-      left: 40%;
-      animation-delay: 1.5s;
-    }
-
-    .cloud:nth-child(3) {
-      left: 70%;
-      animation-delay: 3s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(10px); }
-    }
-
-    .container {
-      position: relative;
-      z-index: 2;
-      padding: 20px;
-      margin: 100px auto;
-      max-width: 300px;
-      background-color: rgba(255, 255, 255, 0.2);
-      border: 4px solid white;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    }
-
-    h1 {
-      font-size: 16px;
-      margin-bottom: 20px;
       color: #fff;
-      text-shadow: 2px 2px 0 #6a00f4;
+      text-align: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
     }
-
+    
+    .message-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 4px solid #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 0 4px #ff6b88, 
+                  0 0 0 8px #fff,
+                  0 0 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    h1 {
+      font-size: 18px;
+      color: #ff6b88;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+    }
+    
     p {
       font-size: 12px;
       line-height: 1.6;
+      color: #555;
       margin-bottom: 25px;
     }
-
-    .btn-container {
+    
+    .buttons {
       display: flex;
       justify-content: center;
       gap: 15px;
     }
-
-    .btn-pixel {
-      display: inline-block;
-      background-color: #fff;
-      color: #6a00f4;
-      border: 4px solid #6a00f4;
-      padding: 12px 24px;
-      text-decoration: none;
+    
+    .btn {
+      background-color: #ff6b88;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 15px;
+      font-family: 'Press Start 2P', cursive;
       font-size: 10px;
-      box-shadow: 4px 4px #000;
-      transition: all 0.1s ease;
-      flex: 1;
-      max-width: 120px;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+      transition: all 0.2s;
     }
-
-    .btn-pixel:hover {
-      background-color: #ffe0fd;
-      transform: scale(1.05);
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
     }
-
-    .bottom-land {
+    
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .hearts {
       position: absolute;
-      bottom: 0;
-      left: 0;
       width: 100%;
-      height: 100px;
-      background: url('https://i.imgur.com/3dqD6dC.png') repeat-x;
-      background-size: contain;
-      z-index: 1;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
     }
-
+    
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      color: rgba(255, 107, 136, 0.6);
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(10deg);
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Awan pixel -->
-  <img src="https://i.imgur.com/hDRpNKh.png" class="cloud" alt="awan" />
-  <img src="https://i.imgur.com/hDRpNKh.png" class="cloud" alt="awan" />
-  <img src="https://i.imgur.com/hDRpNKh.png" class="cloud" alt="awan" />
-
-  <!-- Teks utama dalam frame -->
-  <div class="container">
-    <h1>AKU MINTA MAAF 🙇‍♂️</h1>
-    <p>Maaf banget ya kalau aku udah nyakitin kamu :(</p>
-    <div class="btn-container">
-      <a href="#" class="btn-pixel">Peluk Balik</a>
-      <a href="#" class="btn-pixel">Maafin Aku</a>
+  <div class="hearts" id="hearts"></div>
+  
+  <div class="message-box">
+    <h1>AKU MINTA MAAF</h1>
+    <p>Maaf, nyakitin kamu :(</p>
+    <div class="buttons">
+      <button class="btn">Balik</button>
+      <button class="btn">Maafin Aku</button>
     </div>
   </div>
 
-  <!-- Pohon & landscape bawah -->
-  <div class="bottom-land"></div>
+  <script>
+    // Membuat hati-hati yang jatuh
+    const heartsContainer = document.getElementById('hearts');
+    const heartChars = ['❤️', '💖', '💗', '💘'];
+    
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
+      
+      // Posisi acak
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = -20 + 'px';
+      heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+      
+      // Animasi berbeda
+      heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      heart.style.animationDelay = (Math.random() * 2) + 's';
+      
+      heartsContainer.appendChild(heart);
+      
+      // Hapus elemen setelah animasi selesai
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+    
+    // Buhat hati setiap 300ms
+    setInterval(createHeart, 300);
+    
+    // Efek ketika tombol diklik
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        alert('Terima kasih sudah memaafkan ❤️');
+      });
+    });
+  </script>
 </body>
 </html>
