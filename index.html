@@ -102,13 +102,13 @@
   <!-- Gambar Dino -->
   <img class="dino" src="dino.gif" alt="dino" />
 
-  <!-- Musik Lokal -->
-  <audio id="bgm" src="novo.mp3" autoplay loop></audio>
+  <!-- Musik Lokal, mulai muted -->
+  <audio id="bgm" src="novo.mp3" autoplay muted loop></audio>
 
   <script>
     const music = document.getElementById("bgm");
     const musicButton = document.getElementById("musicButton");
-    let isPlaying = true;
+    let isPlaying = false;
 
     function updateMusicButton() {
       musicButton.textContent = isPlaying ? "Matikan Musik" : "Nyalain Musik";
@@ -119,6 +119,7 @@
         music.pause();
         isPlaying = false;
       } else {
+        music.muted = false; // Unmute saat dinyalakan
         music.play();
         isPlaying = true;
       }
@@ -140,21 +141,17 @@
       }
     }
 
-    // Autoplay fallback jika diblokir browser
+    // Coba auto play saat halaman dibuka
     window.addEventListener('load', () => {
-      const playPromise = music.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            isPlaying = true;
-            updateMusicButton();
-          })
-          .catch(error => {
-            isPlaying = false;
-            updateMusicButton();
-            console.log("Autoplay mungkin diblokir oleh browser:", error);
-          });
-      }
+      music.play().then(() => {
+        music.muted = false;
+        isPlaying = true;
+        updateMusicButton();
+      }).catch(() => {
+        // Jika autoplay gagal, tetap mute
+        isPlaying = false;
+        updateMusicButton();
+      });
     });
   </script>
 </body>
