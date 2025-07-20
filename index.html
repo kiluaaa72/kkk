@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Maafin Aku 😢</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -22,14 +21,19 @@
       margin-top: 40px;
     }
 
+    #typewriter-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+    }
+
     #typewriter {
-      font-size: 1.5rem;
-      margin: 20px auto;
-      width: fit-content;
+      font-size: 1.2rem;
       border-right: 2px solid #333;
       white-space: nowrap;
       overflow: hidden;
-      animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
+      animation: typing 6s steps(70, end), blink 0.75s step-end infinite;
+      max-width: 90vw;
     }
 
     @keyframes typing {
@@ -43,16 +47,17 @@
 
     .dino {
       margin-top: 30px;
-      animation: bounce 2s infinite;
+      width: 250px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
+    .dino:hover {
+      transform: scale(1.1) rotate(5deg);
     }
 
     .button-container {
-      margin-top: 40px;
+      margin-top: 30px;
     }
 
     .button-container button {
@@ -78,34 +83,55 @@
       animation: float 5s linear infinite;
       color: red;
       user-select: none;
+      z-index: 10;
     }
 
     @keyframes float {
       0% { transform: translateY(0); opacity: 1; }
       100% { transform: translateY(100vh); opacity: 0; }
     }
+
+    audio {
+      margin-top: 20px;
+    }
+
+    .audio-control {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
 
   <h1>Plis Maafin Aku 🙏</h1>
-  <div id="typewriter">ku sangat menyesal atas kata & sikapku belakangan ini.
-Aku tahu itu mungkin nyakitin kamu, dan aku benar‑benar nggak bermaksud.
 
-Aku berharap kita bisa mulai ngobrol lagi, pelan‑pelan.
-Aku siap dengerin, belajar, dan perbaiki semuanya.
+  <div id="typewriter-container">
+    <div id="typewriter">
+      ku sangat menyesal atas kata & sikapku belakangan ini.
+      Aku tahu itu mungkin nyakitin kamu, dan aku benar‑benar nggak bermaksud.
 
-Maaf ya... Semoga kamu mau memberi kesempatan lagi  🦕</div>
+      Aku berharap kita bisa mulai ngobrol lagi, pelan‑pelan.
+      Aku siap dengerin, belajar, dan perbaiki semuanya.
 
-  <img src="dino.gif" alt="nailong" width="300" class="dino" />
+      Maaf ya... Semoga kamu mau memberi kesempatan lagi 🦕
+    </div>
+  </div>
+
+  <img src="dino.gif" alt="nailong" class="dino" onclick="alert('Nailong juga minta maaf 🦕💔')"/>
 
   <div class="button-container">
     <button onclick="alert('YAYY!! MAKASIH 😭😭😭')">Aku Maafin Kamu 💕</button>
     <button onclick="alert('Plis... aku bakal buktiin berubah 😢')">Masih Marah 😤</button>
   </div>
 
+  <div class="audio-control">
+    <audio id="bgm" controls autoplay loop>
+      <source src="https://dl.sndup.net/qp7p/anchor-novoamor.mp3" type="audio/mpeg">
+      Browsermu tidak mendukung audio :(
+    </audio>
+  </div>
+
   <script>
-    // Floating hearts animation
+    // Floating hearts
     setInterval(() => {
       const heart = document.createElement('div');
       heart.className = 'heart';
