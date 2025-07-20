@@ -1,118 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Permintaan Maaf</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maaf yaa :(</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
     body {
       margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #a18cd1, #fbc2eb); 
       font-family: 'Press Start 2P', cursive;
-      color: #fff;
-      background: url('pixel-landscape-wide.gif') center/cover no-repeat fixed;
-      overflow-x: hidden;
-    }
-
-    .container {
+      color: white;
       text-align: center;
-      padding: 4rem 1rem;
+      overflow: hidden;
+      height: 100vh;
+      position: relative;
     }
 
-    h1 {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .clouds {
+    .cloud {
       position: absolute;
-      top: 0;
-      width: 200%;
-      height: 200px;
-      background: url('https://i.imgur.com/F6p3g4F.png') repeat-x;
-      animation: cloudMove 60s linear infinite;
-      z-index: 0;
+      top: 40px;
+      width: 150px;
+      animation: float 6s ease-in-out infinite;
     }
 
-    @keyframes cloudMove {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+    .cloud:nth-child(1) {
+      left: 10%;
+      animation-delay: 0s;
     }
 
-    #dino {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 80px;
-      z-index: 3;
+    .cloud:nth-child(2) {
+      left: 40%;
+      animation-delay: 1.5s;
     }
 
-    .heart {
-      position: absolute;
-      font-size: 2rem;
-      animation: float 2s ease-out forwards;
+    .cloud:nth-child(3) {
+      left: 70%;
+      animation-delay: 3s;
     }
 
     @keyframes float {
-      to {
-        transform: translateY(-200px);
-        opacity: 0;
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
     }
 
-    .heart-button, .music-button {
-      background: #6c5ce7;
-      color: white;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.7rem;
-      margin: 1rem;
+    .container {
+      position: relative;
+      z-index: 2;
+      padding-top: 120px;
     }
 
-    .music-button {
-      background: #00b894;
+    h1 {
+      font-size: 16px;
+      margin-bottom: 20px;
     }
+
+    .btn-pixel {
+      display: inline-block;
+      background-color: #fff;
+      color: #6a00f4;
+      border: 4px solid #6a00f4;
+      padding: 12px 24px;
+      margin: 10px;
+      text-decoration: none;
+      font-size: 10px;
+      box-shadow: 4px 4px #000;
+      transition: all 0.1s ease;
+    }
+
+    .btn-pixel:hover {
+      background-color: #ffe0fd;
+      transform: scale(1.05);
+    }
+
+    .bottom-land {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('https://i.imgur.com/3dqD6dC.png') repeat-x;
+      background-size: contain;
+      z-index: 1;
+    }
+
   </style>
 </head>
 <body>
-  <div class="clouds"></div>
-  <img src="dino.gif" id="dino" alt="Dino">
+  <!-- Awan pixel -->
+  <img src="https://i.imgur.com/hDRpNKh.png" class="cloud" alt="awan" />
+  <img src="https://i.imgur.com/hDRpNKh.png" class="cloud" alt="awan" />
+  <img src="https://i.imgur.com/hDRpNKh.png" class="cloud" alt="awan" />
 
+  <!-- Teks utama -->
   <div class="container">
-    <h1>AKU MINTA MAAF YA 🥺❤️</h1>
-    <p>Kalau aku pernah nyakitin kamu, entah itu sengaja atau nggak.</p>
-    <p>Aku cuma pengen kamu tahu, aku sayang dan peduli sama kamu!</p>
-    <p>Makasih udah sabar sama aku 🙏</p>
-    <button class="heart-button" onclick="showHeart()">❤️ Kirim Hati</button>
-    <button class="music-button" onclick="toggleMusic()">🎵 Play/Pause Musik</button>
+    <h1>AKU MINTA MAAF 🙇‍♂️</h1>
+    <p>Maaf banget ya kalau aku udah nyakitin kamu :(</p>
+    <a href="#" class="btn-pixel">Peluk Balik</a>
+    <a href="#" class="btn-pixel">Maafin Aku</a>
   </div>
 
-  <audio id="bg-music" loop>
-    <source src="https://vgmsite.com/soundtracks/undertale-ost/gmyljqip/015%20-%20Home.mp3" type="audio/mp3">
-  </audio>
-
-  <script>
-    const audio = document.getElementById('bg-music');
-    function toggleMusic() {
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
-    }
-
-    function showHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.top = '80vh';
-      heart.innerText = '❤️';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 2000);
-    }
-  </script>
+  <!-- Pohon & landscape bawah -->
+  <div class="bottom-land"></div>
 </body>
 </html>
