@@ -2,312 +2,103 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maaf ya, [melati dwi...]</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maaf ya...</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      width: 100%; height: 100%;
-      overflow: hidden;
-      background: linear-gradient(#000, #111);
-      font-family: 'Segoe UI', sans-serif;
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(#000000, #1a1a40);
       color: white;
-      text-align: center;
-    }
-
-    canvas {
-      position: absolute;
-      top: 0; left: 0; z-index: 0;
+      font-family: 'Comic Sans MS', sans-serif;
+      overflow-x: hidden;
+      height: 100vh;
     }
 
     .container {
-      position: relative;
-      z-index: 2;
-      top: 20%;
+      text-align: center;
+      margin-top: 20vh;
       padding: 20px;
     }
 
     h1 {
       font-size: 2em;
-      color: #ff6b81;
-      margin-bottom: 20px;
     }
 
-    .typing {
-      font-size: 1.2em;
-      white-space: pre-wrap;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.5;
+    #nailong {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 100px;
+      cursor: pointer;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
     }
 
     button {
-      margin-top: 30px;
-      padding: 12px 25px;
-      font-size: 1em;
+      background-color: #ffcf48;
+      color: #333;
+      padding: 10px 20px;
       border: none;
+      font-weight: bold;
       border-radius: 10px;
-      background: #e74c3c;
-      color: white;
       cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #ff6b81;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
+  <!-- Musik autoplay -->
+  <audio id="bg-music" autoplay loop>
+    <source src="https://files.catbox.moe/2q1lze.mp3" type="audio/mp3" />
+    Browser kamu tidak mendukung audio.
+  </audio>
 
-<canvas id="stars"></canvas>
+  <!-- Kontainer teks minta maaf -->
+  <div class="container">
+    <h1 id="type-text"></h1>
+    <button onclick="toggleMusic()">⏯ Musik</button>
+  </div>
 
-<div class="container">
-  <h1>Maaf ya, [Nama] 😔</h1>
-  <div class="typing" id="typingText"></div>
-  <button onclick="toggleMusic()">🎵 Play / Pause Musik</button>
-  <br><br>
-  <button onclick="alert('Makasih udah maafin! 😭❤️')">🤗 Aku Maafin</button>
-</div>
+  <!-- Dino Nailong -->
+  <img src="https://media.tenor.com/m-GSkj2s3TcAAAAi/dino-dance.gif"
+       alt="Nailong Dino"
+       id="nailong"
+       onclick="playSorrySound()" />
 
-<audio id="bgm" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-</audio>
+  <!-- Script ketik otomatis + interaksi -->
+  <script>
+    const text = "Maaf yaa... Aku sadar aku salah 😔 Tapi aku beneran nyesel dan pengen baikan lagi sama kamu... 🦖💛";
+    let i = 0;
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maaf ya, [Nama]</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      width: 100%; height: 100%;
-      overflow: hidden;
-      background: linear-gradient(#000, #111);
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-      text-align: center;
+    function ketik() {
+      if (i < text.length) {
+        document.getElementById("type-text").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(ketik, 60);
+      }
     }
 
-    canvas {
-      position: absolute;
-      top: 0; left: 0; z-index: 0;
+    ketik();
+
+    function toggleMusic() {
+      const bgMusic = document.getElementById("bg-music");
+      if (bgMusic.paused) {
+        bgMusic.play();
+      } else {
+        bgMusic.pause();
+      }
     }
 
-    .container {
-      position: relative;
-      z-index: 2;
-      top: 20%;
-      padding: 20px;
+    function playSorrySound() {
+      const audio = new Audio("https://files.catbox.moe/1yvmkx.mp3");
+      audio.play();
     }
-
-    h1 {
-      font-size: 2em;
-      color: #ff6b81;
-      margin-bottom: 20px;
-    }
-
-    .typing {
-      font-size: 1.2em;
-      white-space: pre-wrap;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.5;
-    }
-
-    button {
-      margin-top: 30px;
-      padding: 12px 25px;
-      font-size: 1em;
-      border: none;
-      border-radius: 10px;
-      background: #e74c3c;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #ff6b81;
-    }
-  </style>
-</head>
-<body>
-
-<canvas id="stars"></canvas>
-
-<div class="container">
-  <h1>Maaf ya, [Nama] 😔</h1>
-  <div class="typing" id="typingText"></div>
-  <button onclick="toggleMusic()">🎵 Play / Pause Musik</button>
-  <br><br>
-  <button onclick="alert('Makasih udah maafin! 😭❤️')">🤗 Aku Maafin</button>
-</div>
-
-<audio id="bgm" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-</audio>
-
-<script>
-  // Typing effect
-  const text = `Aku minta maaf kalau aku pernah nyakitin kamu,
-baik dengan kata-kata, sikap, atau caraku memperlakukanmu.
-
-Aku sadar aku belum jadi orang terbaik, tapi aku ingin berubah.
-
-Aku pengen kamu tahu kalau kamu sangat berarti buat aku.
-Bolehkah aku memperbaiki semuanya?`;
-
-  let i = 0;
-  const typingText = document.getElementById("typingText");
-
-  function typeEffect() {
-    if (i < text.length) {
-      typingText.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typeEffect, 40);
-    }
-  }
-
-  typeEffect();
-
-  function toggleMusic() {
-    const music = document.getElementById("bgm");
-    if (music.paused) music.play();
-    else music.pause();
-  }
-
-  // Stars animation (canvas)
-  const canvas = document.getElementById('stars');
-  const ctx = canvas.getContext('2d');
-  let w = window.innerWidth;
-  let h = window.innerHeight;
-  canvas.width = w;
-  canvas.height = h;
-
-  const hearts = [];
-
-  function Heart() {
-    this.x = Math.random() * w;
-    this.y = Math.random() * h;
-    this.size = Math.random() * 4 + 1;
-    this.speedY = Math.random() * 1 + 0.5;
-    this.alpha = Math.random();
-  }
-
-  Heart.prototype.draw = function() {
-    ctx.beginPath();
-    ctx.fillStyle = `rgba(255, 105, 180, ${this.alpha})`;
-    ctx.moveTo(this.x, this.y);
-    ctx.arc(this.x - 1.5, this.y - 1.5, this.size, 0, Math.PI * 2);
-    ctx.arc(this.x + 1.5, this.y - 1.5, this.size, 0, Math.PI * 2);
-    ctx.lineTo(this.x, this.y + this.size * 2);
-    ctx.fill();
-  };
-
-  Heart.prototype.update = function() {
-    this.y -= this.speedY;
-    if (this.y < -10) {
-      this.y = h + 10;
-      this.x = Math.random() * w;
-    }
-  };
-
-  function animate() {
-    ctx.clearRect(0, 0, w, h);
-    hearts.forEach(h => {
-      h.update();
-      h.draw();
-    });
-    requestAnimationFrame(animate);
-  }
-
-  function init() {
-    for (let i = 0; i < 100; i++) {
-      hearts.push(new Heart());
-    }
-    animate();
-  }
-
-  init();
-</script>
-
-</body>
-</html>
-
-
-  function typeEffect() {
-    if (i < text.length) {
-      typingText.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typeEffect, 40);
-    }
-  }
-
-  typeEffect();
-
-  function toggleMusic() {
-    const music = document.getElementById("bgm");
-    if (music.paused) music.play();
-    else music.pause();
-  }
-
-  // Stars animation (canvas)
-  const canvas = document.getElementById('stars');
-  const ctx = canvas.getContext('2d');
-  let w = window.innerWidth;
-  let h = window.innerHeight;
-  canvas.width = w;
-  canvas.height = h;
-
-  const hearts = [];
-
-  function Heart() {
-    this.x = Math.random() * w;
-    this.y = Math.random() * h;
-    this.size = Math.random() * 4 + 1;
-    this.speedY = Math.random() * 1 + 0.5;
-    this.alpha = Math.random();
-  }
-
-  Heart.prototype.draw = function() {
-    ctx.beginPath();
-    ctx.fillStyle = `rgba(255, 105, 180, ${this.alpha})`;
-    ctx.moveTo(this.x, this.y);
-    ctx.arc(this.x - 1.5, this.y - 1.5, this.size, 0, Math.PI * 2);
-    ctx.arc(this.x + 1.5, this.y - 1.5, this.size, 0, Math.PI * 2);
-    ctx.lineTo(this.x, this.y + this.size * 2);
-    ctx.fill();
-  };
-
-  Heart.prototype.update = function() {
-    this.y -= this.speedY;
-    if (this.y < -10) {
-      this.y = h + 10;
-      this.x = Math.random() * w;
-    }
-  };
-
-  function animate() {
-    ctx.clearRect(0, 0, w, h);
-    hearts.forEach(h => {
-      h.update();
-      h.draw();
-    });
-    requestAnimationFrame(animate);
-  }
-
-  function init() {
-    for (let i = 0; i < 100; i++) {
-      hearts.push(new Heart());
-    }
-    animate();
-  }
-
-  init();
-</script>
-
+  </script>
 </body>
 </html>
