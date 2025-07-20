@@ -123,6 +123,29 @@
       pointer-events: none;
       z-index: 999;
     }
+
+    /* ANIMASI DRAMATIS */
+    .animated-message {
+      opacity: 0;
+      transform: translateY(100px) scale(0.9);
+      animation: fadeInUp 2.5s ease-out forwards;
+      animation-delay: 0.6s;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(100px) scale(0.9);
+      }
+      60% {
+        opacity: 0.7;
+        transform: translateY(-10px) scale(1.03);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
   </style>
 </head>
 <body>
@@ -131,10 +154,14 @@
   <button class="btn music-toggle" onclick="toggleMusic()">🔊 Hidupkan Musik</button>
 
   <!-- Kontainer Pesan -->
-  <div class="container">
+  <div class="container animated-message">
     <img class="foto-luar" src="foto orang.png" alt="Foto Orang" />
     <h1>MAAF YA :(</h1>
-    <p>Kalau aku ada salah atau nyebelin akhir-akhir ini<br>aku bener-bener minta maaf 🥺</p>
+    <p>Aku sadar kata-kata atau sikapku ngeganggu kamu 😔</p> 
+    <p>Tapi aku beneran gak bermaksud kayak gitu...</p>
+    <p>Aku kangen ngobrol sama kamu</p> 
+    <p>Maafin aku ya...kalo kamu mau ngasih kesempatan aku buat benerin semuanya...❤️</p> 
+    <p><em>Tungguin ya pesan aku selanjutnya di sini, hehe~</em></p>
     <button class="btn" onclick="toggleHearts()">Peluk Aku</button>
   </div>
 
