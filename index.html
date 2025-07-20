@@ -1,189 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maaf yaa :(</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maaf Ya :(</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(to bottom, #caa9f2, #f9c4de);
+      overflow-x: hidden;
     }
 
-    body {
-      font-family: 'Press Start 2P', cursive;
-      background: linear-gradient(to bottom, #c2a5e2, #f6c0e6);
-      color: #fff;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+    .musik-toggle {
+      position: absolute;
+      top: 30px;
+      left: 40px;
+      z-index: 999;
+      background-color: #ff66b2;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px white;
+      border: none;
+      cursor: pointer;
     }
 
     .container {
-      text-align: center;
-      z-index: 2;
-      padding: 2rem;
-      background-color: rgba(0,0,0,0.4);
-      border: 4px solid #fff;
-      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 90vh;
       position: relative;
     }
 
-    .foto-luar {
+    .ucapan {
+      background-color: rgba(0, 0, 0, 0.4);
+      border: 5px solid white;
+      border-radius: 20px;
+      padding: 50px;
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      position: relative;
+    }
+
+    .judul {
+      font-size: 24px;
+      color: yellow;
+      margin-bottom: 20px;
+    }
+
+    .isi {
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .btn-peluk {
+      background-color: #ff66b2;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 15px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      box-shadow: 0 0 20px white;
+    }
+
+    .emoji-peluk {
+      font-size: 40px;
+      margin-top: 20px;
+      animation: pelukAnimasi 1s ease forwards;
+    }
+
+    @keyframes pelukAnimasi {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .foto-orang {
       position: absolute;
       top: -40px;
       right: -40px;
-      width: 80px;
-      height: auto;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      border: 3px solid white;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    }
-
-    h1 {
-      font-size: 20px;
-      color: #ffff66;
-      text-shadow: 0 0 4px #fff;
-    }
-
-    p {
-      font-size: 14px;
-      margin: 20px 0;
-    }
-
-    .btn {
-      font-size: 12px;
-      background: #ff69b4;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin: 10px;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 8px #fff;
-      transition: 0.2s;
-    }
-
-    .btn:hover {
-      background: #ff85c1;
-    }
-
-    .music-toggle {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 99;
+      border: 5px solid white;
+      object-fit: cover;
+      background-color: white;
     }
 
     .dino {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 100px;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 90px;
+      height: auto;
+      z-index: 10;
     }
 
-    .heart {
-      position: absolute;
-      font-size: 24px;
-      animation: floatUp 5s linear infinite;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
-    }
-
-    /* Deretan pohon */
-    .pohon-wrapper {
+    .pohon-container {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
       display: flex;
       justify-content: center;
-      gap: 10px;
+      gap: 20px;
       padding-bottom: 10px;
       z-index: 1;
     }
 
     .pohon {
-      height: 60px;
-      width: auto;
+      width: 60px;
+      height: auto;
     }
   </style>
 </head>
 <body>
-  <!-- Tombol Musik -->
-  <button class="btn music-toggle" onclick="toggleMusic()">🔊 Hidupkan Musik</button>
 
-  <!-- Kotak Pesan -->
+  <button class="musik-toggle" onclick="toggleMusik()">🔈 Hidupkan Musik</button>
+  <audio id="bgMusik" autoplay loop>
+    <source src="novo.mp3" type="audio/mpeg" />
+    Browsermu tidak mendukung audio.
+  </audio>
+
   <div class="container">
-    <img class="foto-luar" src="foto orang.png" alt="Foto Orang" />
-    <h1>MAAF YA :(</h1>
-    <p>Kalau aku ada salah atau nyebelin akhir-akhir ini<br>aku bener-bener minta maaf 🥺</p>
-    <button class="btn" onclick="toggleHearts()">Peluk Aku</button>
+    <div class="ucapan">
+      <h1 class="judul">MAAF YA :(</h1>
+      <p class="isi">
+        Kalau aku ada salah atau nyebelin akhir-akhir ini<br>
+        aku bener-bener minta maaf 🥺
+      </p>
+      <button class="btn-peluk" onclick="peluk()">Peluk Aku</button>
+      <div id="emojiContainer"></div>
+      <img src="foto orang.png" class="foto-orang" />
+    </div>
   </div>
 
-  <!-- Gambar Dino -->
-  <img class="dino" src="dino.gif" alt="dino" />
+  <img src="dino.gif" class="dino" />
 
-  <!-- Deretan Pohon -->
-  <div class="pohon-wrapper">
-    <img src="pohon.png" class="pohon" alt="pohon" />
-    <img src="pohon.png" class="pohon" alt="pohon" />
-    <img src="pohon.png" class="pohon" alt="pohon" />
-    <img src="pohon.png" class="pohon" alt="pohon" />
-    <img src="pohon.png" class="pohon" alt="pohon" />
+  <div class="pohon-container">
+    <img src="pohon.png" class="pohon" />
+    <img src="pohon.png" class="pohon" />
+    <img src="pohon.png" class="pohon" />
+    <img src="pohon.png" class="pohon" />
+    <img src="pohon.png" class="pohon" />
+    <img src="pohon.png" class="pohon" />
   </div>
-
-  <!-- Musik -->
-  <audio id="bgm" src="novo.mp3" autoplay loop></audio>
 
   <script>
-    const music = document.getElementById("bgm");
+    const audio = document.getElementById("bgMusik");
     let isPlaying = true;
 
-    function toggleMusic() {
+    function toggleMusik() {
       if (isPlaying) {
-        music.pause();
-        isPlaying = false;
-        document.querySelector(".music-toggle").innerText = "🔇 Nyalakan Musik";
+        audio.pause();
+        document.querySelector(".musik-toggle").innerText = "🔈 Hidupkan Musik";
       } else {
-        music.play();
-        isPlaying = true;
-        document.querySelector(".music-toggle").innerText = "🔊 Hidupkan Musik";
+        audio.play();
+        document.querySelector(".musik-toggle").innerText = "🔊 Matikan Musik";
       }
+      isPlaying = !isPlaying;
     }
 
-    function toggleHearts() {
-      for (let i = 0; i < 20; i++) {
-        const hug = document.createElement("div");
-        hug.classList.add("heart");
-        hug.innerText = "🤗";
-        hug.style.left = Math.random() * 100 + "vw";
-        hug.style.top = "100vh";
-        document.body.appendChild(hug);
-
-        setTimeout(() => {
-          hug.remove();
-        }, 5000);
-      }
+    function peluk() {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji-peluk");
+      emoji.textContent = "🤗";
+      document.getElementById("emojiContainer").appendChild(emoji);
     }
 
-    // Autoplay fallback
-    window.addEventListener('load', () => {
-      const playPromise = music.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log("Autoplay mungkin diblokir oleh browser:", error);
-        });
-      }
+    // Paksa autoplay di beberapa browser
+    window.addEventListener("load", () => {
+      audio.play().catch(() => {});
     });
   </script>
 </body>
