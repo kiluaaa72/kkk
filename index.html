@@ -1,65 +1,46 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plis Maafin Aku 🙏💗</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
-
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Baloo 2', cursive;
+      font-family: 'Fredoka', sans-serif;
       background: linear-gradient(to bottom, #fff5e6, #ffeaea);
-      text-align: center;
+      color: #333;
       overflow-x: hidden;
+      text-align: center;
     }
 
     h1 {
-      font-size: 2.5em;
-      margin-top: 30px;
-      animation: bounce 1.5s infinite;
-      color: #ff4d6d;
+      font-size: 2.5rem;
+      margin: 30px auto 10px;
+      color: #e74c3c;
+    }
+
+    #typewriter {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 20px auto;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      min-height: 300px;
+    }
+
+    .dino {
+      width: 220px;
+      margin: 25px auto;
+      display: block;
+      animation: bounce 2s infinite ease-in-out;
     }
 
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .typewriter {
-      display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: .15em solid orange;
-      animation: typing 4s steps(40, end), blink .75s step-end infinite;
-      font-size: 1.2em;
-      color: #444;
-      max-width: 90%;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      from, to { border-color: transparent; }
-      50% { border-color: orange; }
-    }
-
-    p {
-      font-size: 1.1em;
-      max-width: 800px;
-      margin: 20px auto;
-      color: #222;
-    }
-
-    img {
-      width: 200px;
-      margin: 30px auto;
-      display: block;
+      50% { transform: translateY(-15px); }
     }
 
     .buttons {
@@ -67,20 +48,19 @@
     }
 
     button {
-      font-size: 1em;
-      padding: 12px 20px;
-      margin: 10px;
+      background: #ff6b81;
       border: none;
-      border-radius: 10px;
-      background-color: #ff6b81;
       color: white;
+      padding: 14px 25px;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      margin: 10px;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: 0.3s;
     }
 
     button:hover {
-      background-color: #ff4757;
-      transform: scale(1.05);
+      background: #ff4757;
     }
 
     .hearts {
@@ -91,60 +71,45 @@
       height: 100%;
       pointer-events: none;
       overflow: hidden;
+      z-index: -1;
     }
 
     .heart {
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       background-image: url('https://emojicdn.elk.sh/💖');
       background-size: contain;
       background-repeat: no-repeat;
-      animation: float 8s infinite;
-      opacity: 0.8;
+      animation: float 8s infinite ease-in;
+      opacity: 0.7;
     }
 
     @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(1);
-        opacity: 0;
-      }
-      30% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(0.5);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) scale(1); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(0.5); opacity: 0; }
     }
 
-    .audio-player {
-      margin-top: 30px;
+    audio {
+      margin-top: 25px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Plis Maafin Aku 🙏 💕</h1>
+  <h1>Plis Maafin Aku 🙏💖</h1>
 
-  <div class="typewriter">
-    Aku cuma pengen ngomong ini... dari hati ❤️
-  </div>
+  <div id="typewriter"></div>
 
-  <p>
-    Aku sangat menyesal atas kata dan sikapku akhir-akhir ini. Aku sadar mungkin itu nyakitin kamu, tapi sungguh bukan itu maksudku.  
-    Aku cuma ingin kita bisa ngobrol lagi seperti dulu, pelan-pelan... Aku bakal dengerin kamu, belajar, dan benerin semuanya.  
-    Maafin aku ya... semoga kamu masih mau kasih aku kesempatan 💗
-  </p>
-
-  <img src="dino.gif" alt="Cute dino minta maaf"/>
+  <img src="dino.gif" alt="nailong lucu" class="dino"/>
 
   <div class="buttons">
-    <button onclick="alert('Yay! Makasih banyak ya 💖')">Aku Maafin Kamu 💕</button>
-    <button onclick="alert('Huhuhu... Tapi makasih udah baca 😢')">Masih Marah 😤</button>
+    <button onclick="alert('YAY MAKASIH 😭💕💕💕')">Aku Maafin Kamu 💕</button>
+    <button onclick="alert('Huhuhu... tapi makasih udah baca 😢')">Masih Marah 😤</button>
   </div>
 
-  <audio autoplay loop id="bgmusic">
+  <audio id="bgmusic" autoplay loop controls>
     <source src="novo.m4a" type="audio/mp4">
     Browser kamu tidak mendukung audio.
   </audio>
@@ -152,16 +117,60 @@
   <div class="hearts" id="hearts"></div>
 
   <script>
-    // floating hearts
+    // Floating hearts
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+      heart.style.animationDuration = 6 + Math.random() * 4 + "s";
       document.getElementById("hearts").appendChild(heart);
       setTimeout(() => heart.remove(), 10000);
     }
-    setInterval(createHeart, 400);
+    setInterval(createHeart, 500);
+
+    // Try to auto play music
+    window.addEventListener('load', () => {
+      const music = document.getElementById('bgmusic');
+      music.play().catch(() => {
+        music.controls = true;
+      });
+    });
+
+    // Typewriter effect per kalimat
+    const textParagraphs = [
+      "Aku cuma pengen ngomongin ini dari hari ke hari...",
+      "Tapi aku gak pernah punya keberanian buat nyampein langsung.",
+      "Aku minta maaf kalo kata-kata atau sikapku akhir-akhir ini nyakitin kamu.",
+      "Aku sama sekali nggak bermaksud kayak gitu...",
+      "Aku cuma lagi banyak pikiran dan gak bisa ngungkapin semuanya dengan baik.",
+      "Tapi aku sadar, kamu nggak salah dan kamu gak pantas diperlakukan gitu.",
+      "Aku sayang kamu, dan aku pengen memperbaiki semuanya pelan-pelan.",
+      "Makasih udah mau baca sampai sini, meskipun aku belum tentu dimaafin 😢",
+      "Tapi setidaknya kamu tau perasaanku... itu cukup buatku 🥺💖"
+    ];
+
+    const typeDiv = document.getElementById("typewriter");
+    let currentParagraph = 0;
+    let currentChar = 0;
+
+    function type() {
+      if (currentParagraph < textParagraphs.length) {
+        if (currentChar < textParagraphs[currentParagraph].length) {
+          typeDiv.innerHTML += textParagraphs[currentParagraph].charAt(currentChar);
+          currentChar++;
+          setTimeout(type, 40);
+        } else {
+          typeDiv.innerHTML += "\n\n";
+          currentParagraph++;
+          currentChar = 0;
+          setTimeout(type, 800); // jeda antar kalimat
+        }
+      }
+    }
+
+    window.onload = () => {
+      type();
+    };
   </script>
 
 </body>
