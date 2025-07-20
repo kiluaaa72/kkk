@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Maaf yaa :(</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Press Start 2P', cursive;
       background: linear-gradient(to bottom, #c2a5e2, #f6c0e6);
@@ -19,10 +14,43 @@
       height: 100vh;
       overflow: hidden;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
+    }
+
+    .modal {
+      position: absolute;
+      background: rgba(0,0,0,0.7);
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      z-index: 9999;
+      border: 3px solid #fff;
+    }
+
+    .modal input {
+      padding: 10px;
+      font-size: 14px;
+      font-family: 'Press Start 2P', cursive;
+      margin-top: 10px;
+      width: 90%;
+    }
+
+    .modal button {
+      margin-top: 15px;
+      font-family: 'Press Start 2P', cursive;
+      background: #ff69b4;
+      border: none;
+      padding: 10px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .warning {
+      margin-top: 10px;
+      color: yellow;
+      font-size: 10px;
     }
 
     .container {
@@ -32,7 +60,6 @@
       background-color: rgba(0,0,0,0.4);
       border: 4px solid #fff;
       border-radius: 16px;
-      position: relative;
       display: none;
     }
 
@@ -41,10 +68,9 @@
       top: -40px;
       right: -40px;
       width: 80px;
-      height: auto;
       border-radius: 50%;
       border: 3px solid white;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 10px rgba(255,255,255,0.5);
     }
 
     h1 {
@@ -73,13 +99,6 @@
 
     .btn:hover {
       background: #ff85c1;
-    }
-
-    .music-toggle {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 99;
     }
 
     .dino {
@@ -132,211 +151,142 @@
     }
 
     @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(100px) scale(0.9);
-      }
-      60% {
-        opacity: 0.7;
-        transform: translateY(-10px) scale(1.03);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    /* Modal Login */
-    .modal-overlay {
-      position: fixed;
-      z-index: 1000;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal {
-      background: white;
-      color: black;
-      padding: 30px;
-      border-radius: 16px;
-      text-align: center;
-      max-width: 300px;
-    }
-
-    .modal input {
-      font-family: 'Press Start 2P', cursive;
-      width: 90%;
-      padding: 10px;
-      margin-top: 15px;
-    }
-
-    .warning {
-      color: red;
-      font-size: 10px;
-      margin-top: 8px;
+      0% { opacity: 0; transform: translateY(100px) scale(0.9); }
+      60% { opacity: 0.7; transform: translateY(-10px) scale(1.03); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
   </style>
 </head>
 <body>
 
-  <!-- Modal Nama -->
-  <div class="modal-overlay" id="modalLogin">
-    <div class="modal">
-      <p>Masukkan Namamu Dulu :)</p>
-      <input type="text" id="namaInput" placeholder="nama kamu...">
-      <div class="warning" id="warningText"></div>
-      <button class="btn" onclick="cekNama()">Masuk</button>
-    </div>
-  </div>
+<!-- Modal Nama -->
+<div class="modal" id="modalNama">
+  <h2>Siapa namamu? 😊</h2>
+  <input type="text" id="namaInput" placeholder="Tulis nama kamu...">
+  <button onclick="cekNama()">Masuk</button>
+  <div class="warning" id="warningText"></div>
+</div>
 
-  <button class="btn music-toggle" onclick="toggleMusic()">🔊 Hidupkan Musik</button>
+<!-- Konten Utama -->
+<div class="container animated-message" id="konten">
+  <img class="foto-luar" src="foto orang.png" alt="Foto Orang" />
+  <h1>MAAF YA :(</h1>
+  <p>Aku sadar kata-kata atau sikapku ngeganggu kamu 😔</p> 
+  <p>Tapi aku beneran gak bermaksud kayak gitu...</p>
+  <p>Aku kangen ngobrol sama kamu</p> 
+  <p>Maafin aku ya...kalo kamu mau ngasih kesempatan aku buat benerin semuanya aku bakal...</p> 
+  <p><em>____Tungguin ya pesan aku selanjutnya di sini, hehe~_____</em></p>
+  <button class="btn" onclick="toggleHearts()">u need hug?</button>
+</div>
 
-  <div class="container animated-message" id="kontenUtama">
-    <img class="foto-luar" src="foto orang.png" alt="Foto Orang" />
-    <h1>MAAF YA :(</h1>
-    <p>Aku sadar kata-kata atau sikapku ngeganggu kamu 😔</p> 
-    <p>Tapi aku beneran gak bermaksud kayak gitu...</p>
-    <p>Aku kangen ngobrol sama kamu</p> 
-    <p>Maafin aku ya...kalo kamu mau ngasih kesempatan aku buat benerin semuanya aku bakal...</p> 
-    <p><em>____Tungguin ya pesan aku selanjutnya di sini, hehe~_____</em></p>
-    <button class="btn" onclick="toggleHearts()">u need hug?</button>
-  </div>
+<!-- Dino -->
+<img class="dino" src="dino.gif" alt="dino" />
 
-  <img class="dino" src="dino.gif" alt="dino" />
+<!-- Deretan Pohon -->
+<div class="deretan-pohon">
+  <img src="pohon.png" alt="pohon" />
+  <img src="pohon.png" alt="pohon" />
+  <img src="pohon.png" alt="pohon" />
+  <img src="pohon.png" alt="pohon" />
+  <img src="pohon.png" alt="pohon" />
+</div>
 
-  <div class="deretan-pohon">
-    <img src="pohon.png" alt="pohon" />
-    <img src="pohon.png" alt="pohon" />
-    <img src="pohon.png" alt="pohon" />
-    <img src="pohon.png" alt="pohon" />
-    <img src="pohon.png" alt="pohon" />
-  </div>
+<!-- Musik -->
+<audio id="bgm" src="novo.mp3" loop></audio>
 
-  <audio id="bgm" src="novo.mp3" autoplay loop></audio>
-  <canvas id="saljuCanvas"></canvas>
+<!-- Efek Salju -->
+<canvas id="saljuCanvas"></canvas>
 
-  <script>
-    const allowedNames = ["kisa", "laven", "melati"];
-    const input = document.getElementById("namaInput");
-    const warning = document.getElementById("warningText");
-    const modal = document.getElementById("modalLogin");
-    const konten = document.getElementById("kontenUtama");
+<script>
+  const canvas = document.getElementById('saljuCanvas');
+  const ctx = canvas.getContext('2d');
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
 
-    function cekNama() {
-      const nama = input.value.trim().toLowerCase();
-      if (nama === "") {
-        warning.innerText = "Masukkan namanya dulu yaa :)";
-        return;
-      }
+  let snowflakes = [];
+  for (let i = 0; i < 100; i++) {
+    const x = Math.random() * width;
+    const y = Math.random() * height;
+    const radius = Math.random() * 4 + 1;
+    const speed = Math.random() * 1 + 0.5;
+    snowflakes.push({ x, y, radius, speed });
+  }
 
-      if (allowedNames.includes(nama)) {
-        modal.style.display = "none";
-        konten.style.display = "block";
-      } else {
-        warning.innerText = `Halo ${nama}, halo temennya laven/kisa/melati maaf ya... kamu belum boleh baca halaman ini 😔`;
+  function drawSnowflakes() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = 'white';
+    ctx.beginPath();
+    for (let flake of snowflakes) {
+      ctx.moveTo(flake.x, flake.y);
+      ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+    }
+    ctx.fill();
+    updateSnowflakes();
+  }
+
+  function updateSnowflakes() {
+    for (let flake of snowflakes) {
+      flake.y += flake.speed;
+      if (flake.y > height) {
+        flake.y = 0;
+        flake.x = Math.random() * width;
       }
     }
-  </script>
+  }
 
-  <script>
-    const canvas = document.getElementById('saljuCanvas');
-    const ctx = canvas.getContext('2d');
-    let width = window.innerWidth;
-    let height = window.innerHeight;
+  function loop() {
+    drawSnowflakes();
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  window.addEventListener('resize', () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
     canvas.width = width;
     canvas.height = height;
+  });
 
-    let snowflakes = [];
-    function createSnowflakes() {
-      const x = Math.random() * width;
-      const y = Math.random() * height;
-      const radius = Math.random() * 4 + 1;
-      const speed = Math.random() * 1 + 0.5;
-      snowflakes.push({ x, y, radius, speed });
+  // Nama akses yang diperbolehkan
+  const allowedNames = ["kisa", "laven", "melati"];
+  const input = document.getElementById("namaInput");
+  const warning = document.getElementById("warningText");
+  const modal = document.getElementById("modalNama");
+  const konten = document.getElementById("konten");
+  const music = document.getElementById("bgm");
+
+  function cekNama() {
+    const nama = input.value.trim().toLowerCase();
+    if (nama === "") {
+      warning.innerText = "Masukkan namanya dulu yaa :)";
+      return;
     }
 
-    function drawSnowflakes() {
-      ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = 'white';
-      ctx.beginPath();
-      for (let flake of snowflakes) {
-        ctx.moveTo(flake.x, flake.y);
-        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
-      }
-      ctx.fill();
-      updateSnowflakes();
+    if (allowedNames.includes(nama)) {
+      modal.style.display = "none";
+      konten.style.display = "block";
+      // ⏯️ Autoplay musik setelah interaksi
+      music.play().catch(err => {
+        console.log("Autoplay error:", err);
+      });
+    } else {
+      warning.innerText = `Halo ${nama}, maaf ya temennya kisa/laven/melati... kamu belum boleh baca halaman ini 😔`;
     }
+  }
 
-    function updateSnowflakes() {
-      for (let flake of snowflakes) {
-        flake.y += flake.speed;
-        if (flake.y > height) {
-          flake.y = 0;
-          flake.x = Math.random() * width;
-        }
-      }
+  function toggleHearts() {
+    for (let i = 0; i < 20; i++) {
+      const hug = document.createElement("div");
+      hug.classList.add("heart");
+      hug.innerText = "🤗";
+      hug.style.left = Math.random() * 100 + "vw";
+      hug.style.top = "100vh";
+      document.body.appendChild(hug);
+      setTimeout(() => hug.remove(), 5000);
     }
-
-    function loop() {
-      drawSnowflakes();
-      requestAnimationFrame(loop);
-    }
-
-    for (let i = 0; i < 100; i++) {
-      createSnowflakes();
-    }
-
-    loop();
-
-    window.addEventListener('resize', () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    });
-  </script>
-
-  <script>
-    const music = document.getElementById("bgm");
-    let isPlaying = true;
-
-    function toggleMusic() {
-      if (isPlaying) {
-        music.pause();
-        isPlaying = false;
-        document.querySelector(".music-toggle").innerText = "🔇 Nyalakan Musik";
-      } else {
-        music.play();
-        isPlaying = true;
-        document.querySelector(".music-toggle").innerText = "🔊 Hidupkan Musik";
-      }
-    }
-
-    function toggleHearts() {
-      for (let i = 0; i < 20; i++) {
-        const hug = document.createElement("div");
-        hug.classList.add("heart");
-        hug.innerText = "🤗";
-        hug.style.left = Math.random() * 100 + "vw";
-        hug.style.top = "100vh";
-        document.body.appendChild(hug);
-        setTimeout(() => { hug.remove(); }, 5000);
-      }
-    }
-
-    window.addEventListener('load', () => {
-      const playPromise = music.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log("Autoplay mungkin diblokir oleh browser:", error);
-        });
-      }
-    });
-  </script>
+  }
+</script>
 </body>
 </html>
