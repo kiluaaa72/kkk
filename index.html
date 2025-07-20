@@ -1,93 +1,80 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Maaf Ya :(</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Maaf Ya</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Press Start 2P', cursive;
-      background: linear-gradient(to bottom, #caa9f2, #f9c4de);
+      font-family: 'Courier New', monospace;
+      background: linear-gradient(to bottom, #c8a2ff, #fbb6ce);
       overflow-x: hidden;
     }
 
-    .musik-toggle {
-      position: absolute;
-      top: 30px;
-      left: 40px;
+    #musicToggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
       z-index: 999;
-      background-color: #ff66b2;
+      background-color: #ff5ca2;
       color: white;
-      padding: 15px 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px white;
+      padding: 10px 20px;
+      border-radius: 20px;
       border: none;
+      font-weight: bold;
+      box-shadow: 0 0 15px white;
       cursor: pointer;
     }
 
     .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 90vh;
-      position: relative;
-    }
-
-    .ucapan {
-      background-color: rgba(0, 0, 0, 0.4);
-      border: 5px solid white;
+      margin: 100px auto;
+      padding: 40px;
+      background-color: rgba(0, 0, 0, 0.3);
       border-radius: 20px;
-      padding: 50px;
+      max-width: 70%;
       text-align: center;
       color: white;
-      max-width: 800px;
+      border: 5px solid white;
       position: relative;
     }
 
-    .judul {
-      font-size: 24px;
+    h1 {
       color: yellow;
-      margin-bottom: 20px;
-    }
-
-    .isi {
-      font-size: 16px;
-      margin-bottom: 30px;
-    }
-
-    .btn-peluk {
-      background-color: #ff66b2;
-      color: white;
-      padding: 15px 20px;
-      border-radius: 15px;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-      box-shadow: 0 0 20px white;
-    }
-
-    .emoji-peluk {
       font-size: 40px;
-      margin-top: 20px;
-      animation: pelukAnimasi 1s ease forwards;
     }
 
-    @keyframes pelukAnimasi {
-      0% { transform: scale(0); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
+    .pelukBtn {
+      background-color: #ff5ca2;
+      color: white;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 20px;
+      font-size: 18px;
+      box-shadow: 0 0 15px white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .pelukan {
+      position: absolute;
+      font-size: 50px;
+      animation: pelukAnim 1s ease-out forwards;
+    }
+
+    @keyframes pelukAnim {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-80px); }
     }
 
     .foto-orang {
       position: absolute;
-      top: -40px;
-      right: -40px;
+      top: -60px;
+      right: -60px;
+      border: 5px solid white;
+      border-radius: 50%;
       width: 100px;
       height: 100px;
-      border-radius: 50%;
-      border: 5px solid white;
       object-fit: cover;
       background-color: white;
     }
@@ -96,87 +83,102 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 90px;
-      height: auto;
-      z-index: 10;
+      width: 80px;
     }
 
     .pohon-container {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
       display: flex;
       justify-content: center;
-      gap: 20px;
-      padding-bottom: 10px;
-      z-index: 1;
+      align-items: flex-end;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      margin-top: 60px;
     }
 
-    .pohon {
+    .pohon-container img {
       width: 60px;
-      height: auto;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        max-width: 90%;
+        padding: 20px;
+      }
+      .foto-orang {
+        top: -50px;
+        right: -50px;
+        width: 80px;
+        height: 80px;
+      }
+      #musicToggle {
+        font-size: 14px;
+        padding: 8px 15px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <button class="musik-toggle" onclick="toggleMusik()">🔈 Hidupkan Musik</button>
-  <audio id="bgMusik" autoplay loop>
-    <source src="novo.mp3" type="audio/mpeg" />
-    Browsermu tidak mendukung audio.
-  </audio>
+  <button id="musicToggle">🔈 Hidupkan Musik</button>
+  <audio id="backgroundMusic" src="novo.mp3" autoplay loop></audio>
 
   <div class="container">
-    <div class="ucapan">
-      <h1 class="judul">MAAF YA :(</h1>
-      <p class="isi">
-        Kalau aku ada salah atau nyebelin akhir-akhir ini<br>
-        aku bener-bener minta maaf 🥺
-      </p>
-      <button class="btn-peluk" onclick="peluk()">Peluk Aku</button>
-      <div id="emojiContainer"></div>
-      <img src="foto orang.png" class="foto-orang" />
-    </div>
+    <img src="foto orang.png" alt="Foto Orang" class="foto-orang">
+    <h1>MAAF YA :(</h1>
+    <p>Kalau aku ada salah atau nyebelin akhir-akhir ini<br>aku bener-bener minta maaf 🥺</p>
+    <button class="pelukBtn" onclick="peluk()">Peluk Aku</button>
   </div>
-
-  <img src="dino.gif" class="dino" />
 
   <div class="pohon-container">
-    <img src="pohon.png" class="pohon" />
-    <img src="pohon.png" class="pohon" />
-    <img src="pohon.png" class="pohon" />
-    <img src="pohon.png" class="pohon" />
-    <img src="pohon.png" class="pohon" />
-    <img src="pohon.png" class="pohon" />
+    <img src="pohon.png" alt="Pohon">
+    <img src="pohon.png" alt="Pohon">
+    <img src="pohon.png" alt="Pohon">
+    <img src="pohon.png" alt="Pohon">
+    <img src="pohon.png" alt="Pohon">
+    <img src="pohon.png" alt="Pohon">
   </div>
 
-  <script>
-    const audio = document.getElementById("bgMusik");
-    let isPlaying = true;
+  <img src="dino.gif" class="dino" alt="Dino Imut">
 
-    function toggleMusik() {
+  <script>
+    const music = document.getElementById('backgroundMusic');
+    const toggleBtn = document.getElementById('musicToggle');
+
+    let isPlaying = true;
+    toggleBtn.onclick = function() {
       if (isPlaying) {
-        audio.pause();
-        document.querySelector(".musik-toggle").innerText = "🔈 Hidupkan Musik";
+        music.pause();
+        toggleBtn.textContent = "🔇 Matikan Musik";
       } else {
-        audio.play();
-        document.querySelector(".musik-toggle").innerText = "🔊 Matikan Musik";
+        music.play();
+        toggleBtn.textContent = "🔈 Hidupkan Musik";
       }
       isPlaying = !isPlaying;
     }
 
     function peluk() {
-      const emoji = document.createElement("div");
-      emoji.classList.add("emoji-peluk");
-      emoji.textContent = "🤗";
-      document.getElementById("emojiContainer").appendChild(emoji);
+      const emoji = document.createElement('div');
+      emoji.className = 'pelukan';
+      emoji.textContent = '🤗';
+      emoji.style.left = (Math.random() * 80 + 10) + '%';
+      emoji.style.top = '70%';
+      document.body.appendChild(emoji);
+
+      setTimeout(() => emoji.remove(), 1000);
     }
 
-    // Paksa autoplay di beberapa browser
-    window.addEventListener("load", () => {
-      audio.play().catch(() => {});
+    // autoplay workaround untuk browser restrictions
+    window.addEventListener('load', () => {
+      const promise = music.play();
+      if (promise !== undefined) {
+        promise.catch(() => {
+          isPlaying = false;
+          toggleBtn.textContent = "🔇 Matikan Musik";
+        });
+      }
     });
   </script>
+
 </body>
 </html>
