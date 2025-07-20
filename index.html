@@ -2,157 +2,168 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maaf yaa :(</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Permintaan Maaf</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    * {
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(to bottom, #c2a5e2, #f6c0e6);
+      color: #fff;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
-   body {
-  font-family: 'Press Start 2P', cursive;
-  background: linear-gradient(to bottom, #c2a5e2, #f6c0e6); /* ungu ke pink */
-  color: #fff;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-    .container {
-      text-align: center;
-      z-index: 2;
-      padding: 2rem;
-      background-color: rgba(0,0,0,0.4);
-      border: 4px solid #fff;
-      border-radius: 16px;
-    }
-
-    h1 {
-      font-size: 20px;
-      color: #ffff66;
-      text-shadow: 0 0 4px #fff;
-    }
-
-    p {
-      font-size: 14px;
-      margin: 20px 0;
-    }
-
-    .btn {
-      font-size: 12px;
-      background: #ff69b4;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin: 10px;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 8px #fff;
-      transition: 0.2s;
-    }
-
-    .btn:hover {
-      background: #ff85c1;
-    }
-
-    .music-toggle {
+    .toggle-container {
       position: absolute;
       top: 20px;
       left: 20px;
-      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toggle-button {
+      background-color: hotpink;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 15px;
+      font-size: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 15px white;
+      color: white;
+    }
+
+    .box {
+      background-color: rgba(70, 50, 90, 0.8);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      position: relative;
+      max-width: 600px;
+    }
+
+    .box img.foto-orang {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 70px;
+      height: auto;
+      border-top-left-radius: 20px;
+      border-bottom-right-radius: 10px;
+      z-index: 1;
+    }
+
+    h1 {
+      color: yellow;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .love-button {
+      margin-top: 20px;
+      background-color: hotpink;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 15px;
+      color: white;
+      font-size: 12px;
+      box-shadow: 0 0 10px white;
+      cursor: pointer;
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 32px;
+      animation: floatUp 2s ease-out forwards;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-150px);
+      }
     }
 
     .dino {
       position: absolute;
-      bottom: 0;
-      right: 0;
+      bottom: 10px;
+      right: 30px;
       width: 100px;
-    }
-
-    .heart {
-      position: absolute;
-      font-size: 24px;
-      animation: floatUp 5s linear infinite;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <!-- Tombol Musik di kiri atas -->
-  <button class="btn music-toggle" id="musicButton" onclick="toggleMusic()">Matikan Musik</button>
 
-  <!-- Pesan Utama -->
-  <div class="container">
-    <h1>MAAF YA :(</h1>
-    <p>Kalau aku ada salah atau nyebelin akhir-akhir ini<br>aku bener-bener minta maaf 🥺</p>
-    <button class="btn" onclick="toggleHearts()">Peluk Aku</button>
+  <!-- Musik -->
+  <audio id="bg-music" autoplay loop>
+    <source src="novo.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Toggle -->
+  <div class="toggle-container">
+    <button class="toggle-button" onclick="toggleMusic()">Nyalain Musik</button>
   </div>
 
-  <!-- Gambar Dino -->
-  <img class="dino" src="dino.gif" alt="dino" />
+  <!-- Kotak Pesan -->
+  <div class="box">
+    <img src="foto orang.png" alt="Foto" class="foto-orang" />
+    <h1>MAAF YA :(</h1>
+    <p>
+      Kalau aku ada salah atau nyebelin akhir-akhir ini<br>
+      aku bener-bener minta maaf 🥺
+    </p>
+    <button class="love-button" onclick="showHug()">Peluk Aku</button>
+  </div>
 
-  <!-- Musik Lokal, mulai muted -->
-  <audio id="bgm" src="novo.mp3" autoplay muted loop></audio>
+  <!-- Dino -->
+  <img src="dino.gif" alt="Dino" class="dino" />
 
+  <!-- Script -->
   <script>
-    const music = document.getElementById("bgm");
-    const musicButton = document.getElementById("musicButton");
-    let isPlaying = false;
+    const music = document.getElementById("bg-music");
 
-    function updateMusicButton() {
-      musicButton.textContent = isPlaying ? "Matikan Musik" : "Nyalain Musik";
-    }
+    // Autoplay dengan mute bypass awal
+    window.addEventListener("click", () => {
+      if (music.paused) {
+        music.play().catch(() => {});
+      }
+    });
 
     function toggleMusic() {
-      if (isPlaying) {
-        music.pause();
-        isPlaying = false;
-      } else {
-        music.muted = false; // Unmute saat dinyalakan
+      if (music.paused) {
         music.play();
-        isPlaying = true;
-      }
-      updateMusicButton();
-    }
-
-    function toggleHearts() {
-      for (let i = 0; i < 20; i++) {
-        const hug = document.createElement("div");
-        hug.classList.add("heart");
-        hug.innerText = "🤗";
-        hug.style.left = Math.random() * 100 + "vw";
-        hug.style.top = "100vh";
-        document.body.appendChild(hug);
-
-        setTimeout(() => {
-          hug.remove();
-        }, 5000);
+      } else {
+        music.pause();
       }
     }
 
-    // Coba auto play saat halaman dibuka
-    window.addEventListener('load', () => {
-      music.play().then(() => {
-        music.muted = false;
-        isPlaying = true;
-        updateMusicButton();
-      }).catch(() => {
-        // Jika autoplay gagal, tetap mute
-        isPlaying = false;
-        updateMusicButton();
-      });
-    });
+    function showHug() {
+      const emoji = document.createElement("div");
+      emoji.className = "emoji";
+      emoji.style.left = Math.random() * 90 + "vw";
+      emoji.textContent = "🤗";
+      document.body.appendChild(emoji);
+
+      setTimeout(() => {
+        emoji.remove();
+      }, 2000);
+    }
   </script>
 </body>
 </html>
