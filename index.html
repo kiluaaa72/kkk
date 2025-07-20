@@ -1,169 +1,257 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Maaf Ya 🥺</title>
+  <title>Maaf yaa :(</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #c8a2ff, #fbb6ce);
-      overflow-x: hidden;
-      font-family: 'Press Start 2P', cursive;
+      box-sizing: border-box;
     }
 
-    .music-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 999;
-      padding: 10px 20px;
-      background: hotpink;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      box-shadow: 0 0 15px white;
-      cursor: pointer;
+    body {
+      margin: 0;
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(to bottom, #c2a5e2, #f6c0e6);
+      color: #fff;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
     .container {
-      max-width: 900px;
-      margin: 150px auto 0;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 20px;
-      border: 5px solid white;
-      padding: 40px;
       text-align: center;
+      z-index: 2;
+      padding: 2rem;
+      background-color: rgba(0,0,0,0.4);
+      border: 4px solid #fff;
+      border-radius: 16px;
       position: relative;
     }
 
-    .judul {
-      font-size: 28px;
-      font-weight: bold;
-      color: yellow;
+    .foto-luar {
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 80px;
+      height: auto;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
 
-    .teks {
+    h1 {
+      font-size: 20px;
+      color: #ffff66;
+      text-shadow: 0 0 4px #fff;
+    }
+
+    p {
       font-size: 14px;
-      color: white;
-      margin-top: 20px;
+      margin: 20px 0;
     }
 
-    .peluk {
-      margin-top: 30px;
-      padding: 10px 20px;
+    .btn {
       font-size: 12px;
-      background: hotpink;
+      background: #ff69b4;
       color: white;
       border: none;
-      border-radius: 20px;
-      box-shadow: 0 0 20px white;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 10px;
       cursor: pointer;
+      box-shadow: 0 0 8px #fff;
+      transition: 0.2s;
     }
 
-    .emoji {
-      font-size: 40px;
-      animation: pelukAnim 1s ease;
-      margin-top: 10px;
+    .btn:hover {
+      background: #ff85c1;
     }
 
-    @keyframes pelukAnim {
-      0% { transform: scale(0); opacity: 0; }
-      50% { transform: scale(1.2); opacity: 1; }
-      100% { transform: scale(1); }
-    }
-
-    .foto-orang {
+    .music-toggle {
       position: absolute;
-      top: -50px;
-      right: -50px;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 5px solid white;
-      object-fit: cover;
-      background: white;
+      top: 20px;
+      left: 20px;
+      z-index: 99;
     }
 
     .dino {
-      position: fixed;
-      right: 20px;
-      bottom: 10px;
-      width: 80px;
-      z-index: 10;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100px;
     }
 
-    .pohon-container {
-      position: relative;
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp 5s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
+    }
+
+    .deretan-pohon {
+      position: absolute;
+      bottom: 0;
+      left: 0;
       width: 100%;
       display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 50px;
-      padding-bottom: 30px;
+      justify-content: space-evenly;
+      align-items: flex-end;
+      z-index: 1;
     }
 
-    .pohon-container img {
-      height: 80px;
+    .deretan-pohon img {
+      height: 100px;
+      margin: 0 5px;
+    }
+
+    #saljuCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 999;
     }
   </style>
 </head>
 <body>
 
-  <button class="music-toggle" onclick="toggleMusic()">🔈 Hidupkan Musik</button>
-  <audio id="bgMusic" src="novo.mp3" autoplay loop></audio>
+  <!-- Tombol Musik -->
+  <button class="btn music-toggle" onclick="toggleMusic()">🔊 Hidupkan Musik</button>
 
+  <!-- Kontainer Pesan -->
   <div class="container">
-    <img src="foto orang.png" class="foto-orang" alt="foto orang"/>
-    <div class="judul">MAAF YA :(</div>
-    <div class="teks">
-      Kalau aku ada salah atau nyebelin akhir-akhir ini<br/>
-      aku bener-bener minta maaf 🥺
-    </div>
-    <button class="peluk" onclick="showPeluk()">Peluk Aku</button>
-    <div id="emojiContainer"></div>
+    <img class="foto-luar" src="foto orang.png" alt="Foto Orang" />
+    <h1>MAAF YA :(</h1>
+    <p>Kalau aku ada salah atau nyebelin akhir-akhir ini<br>aku bener-bener minta maaf 🥺</p>
+    <button class="btn" onclick="toggleHearts()">Peluk Aku</button>
   </div>
 
-  <img src="dino.gif" class="dino" alt="dino" />
+  <!-- Dino -->
+  <img class="dino" src="dino.gif" alt="dino" />
 
-  <div class="pohon-container">
-    <img src="pohon.png" alt="pohon">
-    <img src="pohon.png" alt="pohon">
-    <img src="pohon.png" alt="pohon">
-    <img src="pohon.png" alt="pohon">
-    <img src="pohon.png" alt="pohon">
-    <img src="pohon.png" alt="pohon">
+  <!-- Deretan Pohon -->
+  <div class="deretan-pohon">
+    <img src="pohon.png" alt="pohon" />
+    <img src="pohon.png" alt="pohon" />
+    <img src="pohon.png" alt="pohon" />
+    <img src="pohon.png" alt="pohon" />
+    <img src="pohon.png" alt="pohon" />
   </div>
 
+  <!-- Musik -->
+  <audio id="bgm" src="novo.mp3" autoplay loop></audio>
+
+  <!-- Efek Salju -->
+  <canvas id="saljuCanvas"></canvas>
   <script>
-    const music = document.getElementById('bgMusic');
-    let isPlaying = true;
+    const canvas = document.getElementById('saljuCanvas');
+    const ctx = canvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
 
-    function toggleMusic() {
-      if (music.paused) {
-        music.play();
-        isPlaying = true;
-      } else {
-        music.pause();
-        isPlaying = false;
+    let snowflakes = [];
+    function createSnowflakes() {
+      const x = Math.random() * width;
+      const y = Math.random() * height;
+      const radius = Math.random() * 4 + 1;
+      const speed = Math.random() * 1 + 0.5;
+      snowflakes.push({ x, y, radius, speed });
+    }
+
+    function drawSnowflakes() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      for (let flake of snowflakes) {
+        ctx.moveTo(flake.x, flake.y);
+        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+      }
+      ctx.fill();
+      updateSnowflakes();
+    }
+
+    function updateSnowflakes() {
+      for (let flake of snowflakes) {
+        flake.y += flake.speed;
+        if (flake.y > height) {
+          flake.y = 0;
+          flake.x = Math.random() * width;
+        }
       }
     }
 
-    function showPeluk() {
-      const container = document.getElementById('emojiContainer');
-      const emoji = document.createElement('div');
-      emoji.className = 'emoji';
-      emoji.innerText = '🤗';
-      container.innerHTML = '';
-      container.appendChild(emoji);
+    function loop() {
+      drawSnowflakes();
+      requestAnimationFrame(loop);
+    }
+
+    for (let i = 0; i < 100; i++) {
+      createSnowflakes();
+    }
+
+    loop();
+
+    window.addEventListener('resize', () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    });
+  </script>
+
+  <!-- Script Musik dan Pelukan -->
+  <script>
+    const music = document.getElementById("bgm");
+    let isPlaying = true;
+
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+        isPlaying = false;
+        document.querySelector(".music-toggle").innerText = "🔇 Nyalakan Musik";
+      } else {
+        music.play();
+        isPlaying = true;
+        document.querySelector(".music-toggle").innerText = "🔊 Hidupkan Musik";
+      }
+    }
+
+    function toggleHearts() {
+      for (let i = 0; i < 20; i++) {
+        const hug = document.createElement("div");
+        hug.classList.add("heart");
+        hug.innerText = "🤗";
+        hug.style.left = Math.random() * 100 + "vw";
+        hug.style.top = "100vh";
+        document.body.appendChild(hug);
+
+        setTimeout(() => {
+          hug.remove();
+        }, 5000);
+      }
     }
 
     window.addEventListener('load', () => {
-      music.play().catch(() => {
-        console.log("Autoplay diblokir browser.");
-      });
+      const playPromise = music.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log("Autoplay mungkin diblokir oleh browser:", error);
+        });
+      }
     });
   </script>
 </body>
