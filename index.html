@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -90,7 +90,7 @@
 </head>
 <body>
   <!-- Tombol Musik di kiri atas -->
-  <button class="btn music-toggle" onclick="toggleMusic()">🔊 Musik</button>
+  <button class="btn music-toggle" id="musicButton" onclick="toggleMusic()">Matikan Musik</button>
 
   <!-- Pesan Utama -->
   <div class="container">
@@ -103,11 +103,16 @@
   <img class="dino" src="dino.gif" alt="dino" />
 
   <!-- Musik Lokal -->
-  <audio id="bgm" src="novo.m4a" autoplay loop></audio>
+  <audio id="bgm" src="novo.mp3" autoplay loop></audio>
 
   <script>
     const music = document.getElementById("bgm");
+    const musicButton = document.getElementById("musicButton");
     let isPlaying = true;
+
+    function updateMusicButton() {
+      musicButton.textContent = isPlaying ? "Matikan Musik" : "Nyalain Musik";
+    }
 
     function toggleMusic() {
       if (isPlaying) {
@@ -117,6 +122,7 @@
         music.play();
         isPlaying = true;
       }
+      updateMusicButton();
     }
 
     function toggleHearts() {
@@ -138,9 +144,16 @@
     window.addEventListener('load', () => {
       const playPromise = music.play();
       if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log("Autoplay mungkin diblokir oleh browser:", error);
-        });
+        playPromise
+          .then(() => {
+            isPlaying = true;
+            updateMusicButton();
+          })
+          .catch(error => {
+            isPlaying = false;
+            updateMusicButton();
+            console.log("Autoplay mungkin diblokir oleh browser:", error);
+          });
       }
     });
   </script>
