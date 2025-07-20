@@ -1,197 +1,108 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Maaf Ya...</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maaf yaa :(</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Press Start 2P', cursive;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 80px auto 40px;
+      background: linear-gradient(to bottom, #a18cd1, #fbc2eb); 
+      font-family: 'Press Start 2P', cursive;
+      color: white;
       text-align: center;
-      padding: 0 20px;
-    }
-
-    h1 {
-      font-size: 20px;
-      margin-bottom: 20px;
-      animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
-      white-space: nowrap;
       overflow: hidden;
-      border-right: 2px solid #fff;
+      height: 100vh;
+      position: relative;
     }
 
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: #fff }
-    }
-
-    p {
-      font-size: 12px;
-      margin-top: 20px;
-      line-height: 1.8;
-    }
-
-    .dino {
-      margin-top: 30px;
-      max-width: 100%;
-      image-rendering: pixelated;
-    }
-
-    .hearts {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 999;
-    }
-
-    .heart {
+    .cloud {
       position: absolute;
-      width: 10px;
-      height: 10px;
-      background: red;
-      transform: rotate(45deg);
-      animation: float 4s ease-in infinite;
+      top: 40px;
+      width: 150px;
+      animation: float 6s ease-in-out infinite;
     }
 
-    .heart::before, .heart::after {
-      content: '';
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: red;
-      border-radius: 50%;
+    .cloud:nth-child(1) {
+      left: 10%;
+      animation-delay: 0s;
     }
 
-    .heart::before {
-      top: -5px;
-      left: 0;
+    .cloud:nth-child(2) {
+      left: 40%;
+      animation-delay: 1.5s;
     }
 
-    .heart::after {
-      left: 5px;
-      top: 0;
+    .cloud:nth-child(3) {
+      left: 70%;
+      animation-delay: 3s;
     }
 
     @keyframes float {
-      0% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-200px) scale(0.5);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
     }
 
-    #audioToggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #111;
-      color: #fff;
-      font-family: 'Press Start 2P', cursive;
-      border: 2px solid #fff;
-      padding: 10px;
-      cursor: pointer;
-      z-index: 1000;
+    .container {
+      position: relative;
+      z-index: 2;
+      padding-top: 120px;
     }
 
-    #audioToggle:hover {
-      background: #fff;
-      color: #000;
+    h1 {
+      font-size: 16px;
+      margin-bottom: 20px;
     }
+
+    .btn-pixel {
+      display: inline-block;
+      background-color: #fff;
+      color: #6a00f4;
+      border: 4px solid #6a00f4;
+      padding: 12px 24px;
+      margin: 10px;
+      text-decoration: none;
+      font-size: 10px;
+      box-shadow: 4px 4px #000;
+      transition: all 0.1s ease;
+    }
+
+    .btn-pixel:hover {
+      background-color: #ffe0fd;
+      transform: scale(1.05);
+    }
+
+    .bottom-land {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('https://i.imgur.com/3dqD6dC.png') repeat-x;
+      background-size: contain;
+      z-index: 1;
+    }
+
   </style>
 </head>
 <body>
+  <!-- Awan pixel -->
+  <img src="https://i.imgur.com/hDRpNKh.png" class="cloud" alt="awan" />
+  <img src="https://i.imgur.com/hDRpNKh.png" class="cloud" alt="awan" />
+  <img src="https://i.imgur.com/hDRpNKh.png" class="cloud" alt="awan" />
 
-<div class="container">
-  <h1>aku cuma pengen ngomongin ini dari hari kemarin...</h1>
-  <img src="dino.gif" alt="Nailong Dino" class="dino">
-  <p>maaf ya kalau aku akhir-akhir ini banyak bikin kamu kesal atau kecewa.<br>aku bener-bener sayang dan enggak mau kehilangan kamu... 🥺</p>
-</div>
+  <!-- Teks utama -->
+  <div class="container">
+    <h1>AKU MINTA MAAF 🙇‍♂️</h1>
+    <p>Maaf banget ya kalau aku udah nyakitin kamu :(</p>
+    <a href="#" class="btn-pixel">Peluk Balik</a>
+    <a href="#" class="btn-pixel">Maafin Aku</a>
+  </div>
 
-<button id="audioToggle">🔊</button>
-
-<audio id="bgm" src="novo.m4a" autoplay loop></audio>
-
-<canvas class="hearts" id="heartsCanvas"></canvas>
-
-<script>
-  // Autoplay dengan mute toggle
-  const audio = document.getElementById('bgm');
-  const toggleBtn = document.getElementById('audioToggle');
-
-  let isPlaying = true;
-
-  toggleBtn.addEventListener('click', () => {
-    if (isPlaying) {
-      audio.pause();
-      toggleBtn.textContent = '🔇';
-    } else {
-      audio.play();
-      toggleBtn.textContent = '🔊';
-    }
-    isPlaying = !isPlaying;
-  });
-
-  // Hati animasi
-  const canvas = document.getElementById('heartsCanvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const hearts = [];
-
-  function createHeart() {
-    const x = Math.random() * canvas.width;
-    const size = Math.random() * 20 + 10;
-    const speed = Math.random() * 1 + 0.5;
-    hearts.push({ x, y: canvas.height, size, speed });
-  }
-
-  function drawHeart(x, y, size) {
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(Math.PI / 4);
-    ctx.fillStyle = 'red';
-    ctx.fillRect(-size/2, -size/2, size, size);
-    ctx.beginPath();
-    ctx.arc(-size/2, -size/2, size/2, 0, Math.PI * 2);
-    ctx.arc(size/2, -size/2, size/2, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    hearts.forEach((heart, index) => {
-      heart.y -= heart.speed;
-      drawHeart(heart.x, heart.y, heart.size);
-      if (heart.y < -heart.size) hearts.splice(index, 1);
-    });
-    requestAnimationFrame(animate);
-  }
-
-  setInterval(createHeart, 300);
-  animate();
-</script>
-
+  <!-- Pohon & landscape bawah -->
+  <div class="bottom-land"></div>
 </body>
 </html>
