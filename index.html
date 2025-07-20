@@ -110,11 +110,10 @@
     }
 
     #dino {
-      position: absolute;
-      bottom: 10px;
-      right: 20px;
-      width: 80px;
-      z-index: 1;
+      display: block;
+      margin: 30px auto 0;
+      width: 100px;
+      z-index: 2;
     }
 
     #pohon-container {
@@ -141,6 +140,32 @@
       box-shadow: 0 0 10px #ff91e1;
     }
 
+    form {
+      margin-top: 30px;
+    }
+
+    form input, form textarea {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      font-family: 'Press Start 2P';
+      width: 80%;
+      max-width: 400px;
+    }
+
+    form button {
+      padding: 10px 20px;
+      background-color: hotpink;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Press Start 2P';
+      box-shadow: 0 0 10px #ff91e1;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -158,14 +183,18 @@
     }
 
     @keyframes pulseUp {
-      0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
-      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-      100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
-    }
-
-    textarea {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 12px;
+      0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -189,20 +218,18 @@
     <p>Aku kangen ngobrol sama kamu</p>
     <p>Maafin aku ya...kalo kamu mau ngasih kesempatan aku buat benerin semuanya aku bakal...</p>
     <p>___<em><strong>Tungguin ya pesan aku selanjutnya di sini, hehe~</strong></em>____</p>
-
+    
+    <img src="dino.gif" alt="dino" id="dino">
+    
     <button class="hug-button">● u need hug?</button>
 
-    <!-- FORM PESAN -->
-    <form action="https://formsubmit.co/namakamu@gmail.com" method="POST" style="margin-top: 30px;">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="box">
-      <textarea name="pesan" rows="4" placeholder="Tulis pesan kamu di sini..." required
-        style="width: 100%; padding: 10px; border-radius: 10px; margin-bottom: 10px;"></textarea>
-      <button type="submit" class="hug-button">Kirim Pesan ke Aku ❤️</button>
+    <form action="https://formsubmit.co/your@email.com" method="POST">
+      <input type="text" name="name" placeholder="Nama Kamu" required>
+      <textarea name="message" placeholder="Pesan untukku..." rows="4" required></textarea>
+      <input type="hidden" name="_next" value="https://your-site.vercel.app/thanks.html">
+      <button type="submit">Kirim Pesan</button>
     </form>
   </div>
-
-  <img src="dino.gif" alt="dino" id="dino">
 
   <div id="pohon-container">
     <img src="pohon.png" alt="pohon"/>
@@ -213,7 +240,7 @@
   </div>
 </div>
 
-<audio id="bg-music" src="novo.mp3" autoplay loop></audio>
+<audio id="bg-music" src="novo.mp3" autoplay loop muted></audio>
 
 <script>
   const allowedNames = ["kisa", "laven", "melati"];
@@ -224,8 +251,11 @@
     if (allowedNames.includes(name)) {
       document.getElementById("login").style.display = "none";
       document.getElementById("main-content").style.display = "block";
+
       const music = document.getElementById("bg-music");
+      music.muted = false;
       music.play();
+
       startSnow();
     } else {
       notif.textContent = `Halo ${name}, maaf ya kamu tidak diperkenankan baca 😔`;
@@ -237,20 +267,25 @@
     const ctx = canvas.getContext("2d");
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
-    let flakes = Array.from({ length: 100 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: Math.random() * 4 + 1,
-      d: Math.random() + 1
-    }));
 
-    let angle = 0;
+    let numFlakes = 100;
+    let flakes = [];
+
+    for (let i = 0; i < numFlakes; i++) {
+      flakes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 4 + 1,
+        d: Math.random() + 1
+      });
+    }
 
     function drawFlakes() {
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = "white";
       ctx.beginPath();
-      for (let f of flakes) {
+      for (let i = 0; i < numFlakes; i++) {
+        let f = flakes[i];
         ctx.moveTo(f.x, f.y);
         ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
       }
@@ -258,12 +293,18 @@
       moveFlakes();
     }
 
+    let angle = 0;
+
     function moveFlakes() {
       angle += 0.01;
-      for (let f of flakes) {
+      for (let i = 0; i < numFlakes; i++) {
+        let f = flakes[i];
         f.y += Math.pow(f.d, 2) + 1;
         f.x += Math.sin(angle) * 2;
-        if (f.y > height) f.y = 0;
+
+        if (f.y > height) {
+          flakes[i] = {x: Math.random() * width, y: 0, r: f.r, d: f.d};
+        }
       }
     }
 
