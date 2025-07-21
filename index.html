@@ -281,19 +281,25 @@
 
 <script>
   const allowedNames = ["kisa", "laven", "melati"];
+function checkName() {
+    const name = document.getElementById("nameInput").value.toLowerCase().trim();
+    const notif = document.getElementById("notif");
 
- function checkName() {
-  const name = document.getElementById("nameInput").value.toLowerCase().trim();
-  const notif = document.getElementById("notif");
-  if (allowedNames.includes(name)) {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("main-content").style.display = "block";
+    if (allowedNames.includes(name)) {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
 
-    const music = document.getElementById("bg-music");
-    music.muted = false;
-    music.play();
+      const music = document.getElementById("bg-music");
+      music.muted = false;
+      music.play();
 
-    document.getElementById("volumeNotice").style.display = "block"; // 👈 ditambahkan di sini
+      document.getElementById("volumeNotice").style.display = "block";
+
+      startSnow();
+    } else {
+      notif.textContent = `Halo ${name}, maaf ya kamu tidak diperkenankan baca 😔`;
+    }
+  }
 
     startSnow();
   } else {
