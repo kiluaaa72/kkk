@@ -301,17 +301,6 @@
   }
 }
 
-
-      const music = document.getElementById("bg-music");
-      music.muted = false;
-      music.play();
-
-      startSnow();
-    } else {
-      notif.textContent = `Halo ${name}, maaf ya kamu tidak diperkenankan baca 😔`;
-    }
-  }
-
   function startSnow() {
     const canvas = document.getElementById("snow-canvas");
     const ctx = canvas.getContext("2d");
