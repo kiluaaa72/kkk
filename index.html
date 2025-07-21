@@ -194,8 +194,11 @@
   <h2>Masukkan Nama Kamu</h2>
   <input type="text" id="nameInput" placeholder="Ketik nama..."/>
   <button onclick="checkName()">Masuk</button>
-  <div id="notif" class="notif"></div>
+<div id="notif" class="notif"></div>
+<div id="volumeNotice" style="display: none; color: yellow; font-size: 12px;">
+  🔊 Jangan lupa nyalain volume yaa, biar makin berasa...
 </div>
+
 
 <div id="main-content">
   <div class="message-box">
@@ -279,12 +282,25 @@
 <script>
   const allowedNames = ["kisa", "laven", "melati"];
 
-  function checkName() {
-    const name = document.getElementById("nameInput").value.toLowerCase().trim();
-    const notif = document.getElementById("notif");
-    if (allowedNames.includes(name)) {
-      document.getElementById("login").style.display = "none";
-      document.getElementById("main-content").style.display = "block";
+ function checkName() {
+  const name = document.getElementById("nameInput").value.toLowerCase().trim();
+  const notif = document.getElementById("notif");
+  if (allowedNames.includes(name)) {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("main-content").style.display = "block";
+
+    const music = document.getElementById("bg-music");
+    music.muted = false;
+    music.play();
+
+    document.getElementById("volumeNotice").style.display = "block"; // 👈 ditambahkan di sini
+
+    startSnow();
+  } else {
+    notif.textContent = `Halo ${name}, maaf ya kamu tidak diperkenankan baca 😔`;
+  }
+}
+
 
       const music = document.getElementById("bg-music");
       music.muted = false;
