@@ -1,290 +1,179 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>haii</title>
+  <title>Peluk Virtual</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
       font-family: 'Press Start 2P', cursive;
-      background: linear-gradient(to bottom, #cba6f7, #f9a2d1);
+      background: linear-gradient(to bottom right, #ffb6c1, #dda0dd);
       color: white;
       overflow-x: hidden;
     }
 
-    #snow-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      width: 100%;
-      height: 100%;
-      z-index: 999;
-    }
-
-    .login-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-      gap: 20px;
-      padding: 20px;
-      z-index: 2;
-      position: relative;
-    }
-
-    .login-container input {
-      padding: 10px;
-      border-radius: 10px;
-      border: none;
-      font-family: 'Press Start 2P';
-      text-align: center;
-    }
-
-    .login-container button {
-      padding: 10px 20px;
-      background-color: hotpink;
-      color: white;
-      border: none;
+    .container {
+      max-width: 80%;
+      margin: 100px auto 50px;
+      padding: 30px;
+      background-color: rgba(0,0,0,0.3);
       border-radius: 20px;
-      cursor: pointer;
-      font-family: 'Press Start 2P';
-    }
-
-    .notif {
-      margin-top: 15px;
-      color: yellow;
-    }
-
-    #main-content {
-      display: none;
-      padding: 50px 20px 0;
+      border: 5px solid white;
       text-align: center;
       position: relative;
-      z-index: 2;
     }
 
-    .message-box {
-      border: 4px solid white;
-      border-radius: 20px;
-      background-color: rgba(0, 0, 0, 0.3);
-      padding: 40px;
-      max-width: 1000px;
-      margin: 0 auto;
-      position: relative;
-      animation: fadeIn 1s ease-out;
-    }
-
-    .message-box h2 {
-      color: yellow;
-      margin-bottom: 20px;
-    }
-
-    .message-box p {
-      margin: 15px 0;
-      line-height: 1.6;
-    }
-
-    .message-box p:last-child {
-      font-style: italic;
-      text-decoration: underline;
-    }
-
-    #foto-orang {
+    .foto-orang {
       position: absolute;
-      top: -60px;
-      right: -60px;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid white;
+      top: -100px;
+      right: -80px;
+      width: 150px;
     }
 
-    #dino {
-      display: block;
-      margin: 30px auto 0;
+    h1 {
+      font-size: 14px;
+      margin-bottom: 20px;
+      line-height: 2em;
+    }
+
+    .hug-section {
+      margin-top: 40px;
+    }
+
+    .hug-button {
+      padding: 20px 30px;
+      background: hotpink;
+      border-radius: 50px;
+      box-shadow: 0 0 20px #ff69b4;
+      display: inline-block;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    .emoji-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      font-size: 28px;
+    }
+
+    .dino {
       width: 100px;
-      z-index: 2;
+      margin: 0 auto 20px;
+      display: block;
     }
 
-    #pohon-container {
+    .bottom-trees {
       display: flex;
       justify-content: center;
       gap: 40px;
       margin-top: 60px;
-      padding-bottom: 40px;
     }
 
-    #pohon-container img {
-      width: 60px;
+    .bottom-trees img {
+      width: 50px;
     }
 
-  .hug-button {
-  margin-top: 20px;
-  background-color: hotpink;
-  border: none;
-  padding: 8px 16px; /* lebih kecil dari sebelumnya */
-  font-size: 10px;   /* tambahkan ini untuk perkecil tulisan */
-  color: white;
-  border-radius: 30px;
-  cursor: pointer;
-  font-family: 'Press Start 2P';
-  box-shadow: 0 0 10px #ff91e1;
-}
-
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hug-effect {
+    canvas {
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 100px;
-      animation: pulseUp 2s ease-out forwards;
-      z-index: 1000;
+      top: 0;
+      left: 0;
+      z-index: -1;
       pointer-events: none;
     }
 
-    @keyframes pulseUp {
-      0% {
-        transform: translate(-50%, -50%) scale(0.5);
-        opacity: 0;
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(1.2);
-        opacity: 1;
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0;
-      }
+    .qr {
+      margin-top: 30px;
+    }
+
+    .qr img {
+      width: 150px;
+      border-radius: 10px;
+    }
+
+    .qr-caption {
+      font-style: italic;
+      text-decoration: underline;
+      margin-top: 10px;
+      font-size: 12px;
     }
   </style>
 </head>
 <body>
 
-<canvas id="snow-canvas"></canvas>
+  <audio id="bgm" autoplay loop>
+    <source src="novo.mp3" type="audio/mpeg" />
+  </audio>
 
-<div id="login" class="login-container">
-  <h2>Masukkan Nama Kamu</h2>
-  <input type="text" id="nameInput" placeholder="Ketik nama..."/>
-  <button onclick="checkName()">Masuk</button>
-  <div id="notif" class="notif"></div>
-</div>
+  <div class="container">
+    <img src="foto orang.png" class="foto-orang" alt="foto orang" />
+    <h1>
+      maaf yaa aku gamau kamu ngerasa kehilangan<br>
+      aku bakal benerin semuanya aku bakal..<br><br>
+      ___<i><b>Tungguin ya pesan aku 'selanjutnya di sini, hehe*</b></i>____
+    </h1>
 
-<div id="main-content">
-  <div class="message-box">
-    <img src="foto orang.png" alt="foto orang" id="foto-orang">
-    <h2>HALLOOO KISA/LAVEN/MELATI:(</h2>
-    <p>cie bentar lagi jadi maba 😏✨</p>
-<p>akhirnya yaa, setelah semua perjuangan panjang, begadang, stres mikirin nilai, nangis diem-diem di kamar, dan doa-doa yang gak pernah putus... semuanya terbayar 🥹</p>
-<p>kamu hebat banget udah sampai di titik ini. jangan pernah remehin diri kamu sendiri, karena kamu layak dapet semua ini 🫶</p>
-<p>semangat ya ospeknya nanti! percaya deh, walaupun kelihatannya serem dan banyak cerita menakutkan bertebaran, ospek itu bakal jadi pengalaman seru yang gak bakal kamu lupain</p>
-<p>kamu bakal ketemu temen-temen baru, ketawa bareng, capek bareng, bahkan mungkin nemu sahabat sehidup semati dari sana</p>
-<p>dan soal orang-orang yang katanya galak? tenang aja... aku yakin gak akan ada yang tega galakin kamu yang mukanya udah lucu dan lugu gitu 🤭</p>
-<p>kalau pun nanti ada yang marah-marah, anggap aja itu bagian dari proses—kayak bumbu dalam cerita hidup kamu yang seru ini</p>
-<p>dan aku percaya banget kamu bisa lewatin semuanya dengan senyum manismu yang gak pernah gagal bikin suasana jadi lebih hangat 💖</p>
-<p>jadi maba itu cuma sekali, jadi jangan terlalu dibawa stres ya... nikmatin tiap detiknya, karena nanti kamu bakal kangen masa-masa awal masuk kampus</p>
-<p>mulai dari nyasar nyari ruang kelas, salah kostum pas hari tematik, sampe panik gara-gara tugas ospek dadakan 😅</p>
-<p>semua itu bakal jadi kenangan indah yang lucu buat diceritain di masa depan</p>
-<p>aku mungkin gak bisa selalu ada secara fisik di samping kamu, tapi doa dan dukunganku selalu ngikutin kamu ke mana pun kamu pergi</p>
-<p>aku percaya kamu akan bersinar di dunia baru ini, seperti kamu bersinar di hidupku 🤍</p>
-<p>jadi... jangan takut. kamu gak sendiri. kamu lebih kuat dari yang kamu kira, dan kamu pantas dapet semua kebahagiaan di dunia ini</p>
-<p>peluk jauh dariku untuk kamu yang lagi bersiap jadi mahasiswa baru 🤗🎓💐</p>
-    <p>Aku sadar kata-kata atau sikapku ngeganggu kamu 🥺</p>
-    <p>Tapi aku beneran gak bermaksud kayak gitu...</p>
-    <p>Aku kangen ngobrol sama kamu</p>
-    <p>Maafin aku ya...kalo kamu mau ngasih kesempatan aku buat benerin semuanya aku bakal nunggu untuk.......</p>
-    <p>___<em><strong>Tungguin ya pesan aku selanjutnya di sini, hehe~</strong></em>____</p>
-    
-   <img src="dino.gif" alt="dino" id="dino">
+    <img src="dino.png" alt="dino" class="dino" />
 
-<div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
-  <div style="display: flex; gap: 4px;">
-    <span style="font-size: 20px;">🫰🏻</span>
-    <span style="font-size: 20px;">🫰🏻</span>
-    <span style="font-size: 20px;">🫰🏻</span>
+    <div class="emoji-row">🫰🏻 🫰🏻 🫰🏻 🫰🏻</div>
+
+    <div class="hug-section">
+      <div class="hug-button" onclick="showHug()">• u need hug?</div>
+    </div>
+
+    <div class="emoji-row">🫰🏻 🫰🏻 🫰🏻 🫰🏻</div>
+
+    <div class="qr">
+      <img src="qr.jpg" alt="qr code"/>
+      <div class="qr-caption">coba scan dehhh...</div>
+    </div>
   </div>
 
-<div class="hug-section">
-  <div class="hug-button" onclick="showHug()">• u need hug?</div>
-
-  <div class="qr">
-    <img src="qr.jpg" alt="qr code" />
-    <div class="qr-caption">coba scan dehhh...</div>
-  </div>
-</div>
-
-
-
-  <div style="display: flex; gap: 4px;">
-    <span style="font-size: 20px;">🫰🏻</span>
-    <span style="font-size: 20px;">🫰🏻</span>
-    <span style="font-size: 20px;">🫰🏻</span>
-  </div>
-</div>
-
+  <div class="bottom-trees">
+    <img src="pohon.png" alt="pohon" />
+    <img src="pohon.png" alt="pohon" />
+    <img src="pohon.png" alt="pohon" />
+    <img src="pohon.png" alt="pohon" />
+    <img src="pohon.png" alt="pohon" />
   </div>
 
-  <div id="pohon-container">
-    <img src="pohon.png" alt="pohon"/>
-    <img src="pohon.png" alt="pohon"/>
-    <img src="pohon.png" alt="pohon"/>
-    <img src="pohon.png" alt="pohon"/>
-    <img src="pohon.png" alt="pohon"/>
-  </div>
-</div>
+  <canvas id="snow"></canvas>
 
-<audio id="bg-music" src="novo.mp3" autoplay loop muted></audio>
+  <script>
+    // Autoplay fix (untuk iOS atau user gesture)
+    document.addEventListener('click', () => {
+      const audio = document.getElementById('bgm');
+      if (audio.paused) {
+        audio.play().catch(() => {});
+      }
+    });
 
-<script>
-  const allowedNames = ["kisa", "laven", "melati"];
-
-  function checkName() {
-    const name = document.getElementById("nameInput").value.toLowerCase().trim();
-    const notif = document.getElementById("notif");
-    if (allowedNames.includes(name)) {
-      document.getElementById("login").style.display = "none";
-      document.getElementById("main-content").style.display = "block";
-
-      const music = document.getElementById("bg-music");
-      music.muted = false;
-      music.play();
-
-      startSnow();
-    } else {
-      notif.textContent = `Halo ${name}, maaf ya kamu tidak diperkenankan baca 😔`;
+    // Show hug alert
+    function showHug() {
+      alert("Peluk virtual terkirim! 🤗");
     }
-  }
 
-  function startSnow() {
-    const canvas = document.getElementById("snow-canvas");
+    // Salju realistis
+    const canvas = document.getElementById("snow");
     const ctx = canvas.getContext("2d");
+
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
 
-    let numFlakes = 100;
-    let flakes = [];
+    const flakes = [];
+    const flakeCount = 200;
 
-    for (let i = 0; i < numFlakes; i++) {
+    for (let i = 0; i < flakeCount; i++) {
       flakes.push({
         x: Math.random() * width,
         y: Math.random() * height,
         r: Math.random() * 4 + 1,
-        d: Math.random() + 1
+        d: Math.random() * flakeCount,
       });
     }
 
@@ -292,8 +181,8 @@
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = "white";
       ctx.beginPath();
-      for (let i = 0; i < numFlakes; i++) {
-        let f = flakes[i];
+      for (let i = 0; i < flakeCount; i++) {
+        const f = flakes[i];
         ctx.moveTo(f.x, f.y);
         ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
       }
@@ -305,38 +194,31 @@
 
     function moveFlakes() {
       angle += 0.01;
-      for (let i = 0; i < numFlakes; i++) {
-        let f = flakes[i];
-        f.y += Math.pow(f.d, 2) + 1;
-        f.x += Math.sin(angle) * 2;
+      for (let i = 0; i < flakeCount; i++) {
+        const f = flakes[i];
+        f.y += Math.pow(f.r, 1.5) / 2;
+        f.x += Math.sin(angle) * 1;
 
         if (f.y > height) {
-          flakes[i] = {x: Math.random() * width, y: 0, r: f.r, d: f.d};
+          flakes[i] = {
+            x: Math.random() * width,
+            y: 0,
+            r: f.r,
+            d: f.d,
+          };
         }
       }
     }
 
-    function animateSnow() {
-      drawFlakes();
-      requestAnimationFrame(animateSnow);
+    setInterval(drawFlakes, 25);
+
+    // Validasi nama awal
+    let allowed = ['kisa', 'laven', 'melati'];
+    let nama = prompt("Masukin nama kamu dulu dong ❤️");
+    if (!allowed.includes(nama?.toLowerCase())) {
+      alert("Maaf, cuma buat yang namanya kisa/laven/melati yaa 😅");
+      document.body.innerHTML = "";
     }
-
-    animateSnow();
-
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
-  }
-
-  document.querySelector('.hug-button').addEventListener('click', () => {
-    const hug = document.createElement('div');
-    hug.textContent = '🤗';
-    hug.className = 'hug-effect';
-    document.body.appendChild(hug);
-    setTimeout(() => hug.remove(), 2000);
-  });
-</script>
-
+  </script>
 </body>
 </html>
