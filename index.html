@@ -184,6 +184,16 @@
         opacity: 0;
       }
     }
+    @keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+#volumeNotice {
+  animation: blink 1.5s infinite;
+}
+
   </style>
 </head>
 <body>
@@ -194,8 +204,15 @@
   <h2>Masukkan Nama Kamu</h2>
   <input type="text" id="nameInput" placeholder="Ketik nama..."/>
   <button onclick="checkName()">Masuk</button>
+
+  <!-- Pemberitahuan volume -->
+  <div id="volumeNotice" style="margin-top: 12px; color: white; font-size: 14px; font-family: 'Press Start 2P';">
+    🔊 Jangan lupa nyalain volumenya ya!
+  </div>
+
   <div id="notif" class="notif"></div>
 </div>
+
 
 <div id="main-content">
   <div class="message-box">
