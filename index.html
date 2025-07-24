@@ -266,6 +266,29 @@
     50% { transform: translateY(-4px); }
   }
 </style>
+<style>
+.pixel-button {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #ffc0cb; /* pink pastel */
+  color: #5e005e; /* ungu gelap */
+  border: 4px solid #fff;
+  padding: 12px 24px;
+  font-size: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px #ff7db8; /* bayangan pink tua */
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.pixel-button:hover {
+  background-color: #ffd6e8; /* pink lebih terang pas hover */
+  transform: scale(1.05);
+  box-shadow: 0 2px #ff4da6;
+}
+</style>
 
 
   </style>
@@ -297,9 +320,10 @@
   (Kalau kamu udah baca bagian awal ini, klik di bawah biar langsung ke Chapter 2 ya!)
 </p>
 <button onclick="document.getElementById('chapter2').scrollIntoView({ behavior: 'smooth' });"
-  class="fade-in" style="animation-delay: 1.2s; margin-bottom: 30px;">
-  ⬇️ Langsung ke Chapter 2
+  class="pixel-button fade-in" style="animation-delay: 1.2s;">
+  💖 Langsung ke Chapter 2
 </button>
+
     <p class="fade-in" style="animation-delay: 0s">maaf ya ngirim ini disaat kamu lagi luteal phase, semoga mood nya jadi bagus ya setelah baca ini haha</p>
 <p class="fade-in" style="animation-delay: 0s">sebenernya aku udaa buat ini pas sebelum kejadian nya kaya sekarang</p>
 <p class="fade-in" style="animation-delay: 0s">inget ga pas aku bilang aku mau ngerjain sesuatu dan ini yang aku bilang ngerjain sesuatu tuhh</p>
